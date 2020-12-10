@@ -1,0 +1,227 @@
+QuestionCode,VariableName,QuestionName,Item,Subitem,Remarks
+StartDate,StartDate,StartDate,StartDate,,
+EndDate,EndDate,EndDate,EndDate,,
+Status,Status,Status,Status,,
+Progress,Progress,Progress,Progress,,
+Duration (in seconds),SurveyDur,SurveyDur,SurveyDur,,
+Finished,Finished,Finished,Finished,,
+RecordedDate,RecordedDate,RecordedDate,RecordedDate,,
+ResponseId,ResponseId,ResponseId,ResponseId,,
+DistributionChannel,Delete,Delete,Delete,,Delete
+UserLanguage,Delete,Delete,Delete,,Delete
+Q1.1,Consent,Consent,,,
+Q2.1,DivCol,Affiliation,,,"CollegeYN, mergeDiv"
+Q2.2,Div,Affiliation,,,mergeDiv
+Q2.3,Dept,Affiliation,,,mergeDept
+Q2.4,Dept,Affiliation,,,mergeDept
+Q2.5,OtherAff,Affiliation,,,mergeOtherAff
+Q2.6,OtherAff,Affiliation,,,mergeOtherAff
+Q2.7,Dept,Affiliation,,,mergeDept
+Q2.8,Dept,Affiliation,,,mergeDept
+Q2.9,OtherAff,Affiliation,,,mergeOtherAff
+Q2.10,OtherAff,Affiliation,,,mergeOtherAff
+Q2.11,Dept,Affiliation,,,mergeDept
+Q2.12,Dept,Affiliation,,,mergeDept
+Q2.13,OtherAff,Affiliation,,,mergeOtherAff
+Q2.14,OtherAff,Affiliation,,,mergeOtherAff
+Q2.15,Dept,Affiliation,,,mergeDept
+Q2.16,Dept,Affiliation,,,mergeDept
+Q2.17,OtherAff,Affiliation,,,mergeOtherAff
+Q2.18,OtherAff,Affiliation,,,mergeOtherAff
+Q2.19,Dept,Affiliation,,,mergeDept
+Q2.20,Dept,Affiliation,,,mergeDept
+Q2.21,OtherAff,Affiliation,,,mergeOtherAff
+Q2.22,OtherAff,Affiliation,,,mergeOtherAff
+Q2.23,Role,Role,,,
+Q2.24,Duration,Duration,,,
+Q3.1_1,Awareness_OA,Awareness,OA,,
+Q3.1_2,Awareness_Data,Awareness,Data,,
+Q3.1_3,Awareness_Code,Awareness,Code,,
+Q3.1_4,Awareness_Materials,Awareness,Materials,,
+Q3.1_5,Awareness_Preprint,Awareness,Preprint,,
+Q3.1_6,Awareness_Prereg,Awareness,Prereg,,
+Q3.1_7,Awareness_RegRep,Awareness,RegRep,,
+Q3.2_1,Effect_OA,Effect,OA,,
+Q3.2_2,Effect_Data,Effect,Data,,
+Q3.2_3,Effect_Code,Effect,Code,,
+Q3.2_4,Effect_Materials,Effect,Materials,,
+Q3.2_5,Effect_Preprint,Effect,Preprint,,
+Q3.2_6,Effect_Prereg,Effect,Prereg,,
+Q3.2_7,Effect_RegRep,Effect,RegRep,,
+Q4.1_1_1,Barriers_OA_Infrastructure,Barriers,OA,Infrastructure,change to YN
+Q4.1_1_2,Barriers_OA_Training,Barriers,OA,Training,change to YN
+Q4.1_1_3,Barriers_OA_Norms,Barriers,OA,Norms,change to YN
+Q4.1_1_4,Barriers_OA_Incentives,Barriers,OA,Incentives,change to YN
+Q4.1_1_5,Barriers_OA_Policy,Barriers,OA,Policy,change to YN
+Q4.1_1_6,Barriers_OA_Other,Barriers,OA,Other,change to YN
+Q4.1_1_7,Barriers_OA_None,Barriers,OA,None,change to YN
+Q4.1_1_88,Barriers_OA_NotSure,Barriers,OA,NotSure,change to YN
+Q4.1_1_99,Barriers_OA_NA,Barriers,OA,NA,change to YN
+Q4.1_2_1,Barriers_Data_Infrastructure,Barriers,Data,Infrastructure,change to YN
+Q4.1_2_2,Barriers_Data_Training,Barriers,Data,Training,change to YN
+Q4.1_2_3,Barriers_Data_Norms,Barriers,Data,Norms,change to YN
+Q4.1_2_4,Barriers_Data_Incentives,Barriers,Data,Incentives,change to YN
+Q4.1_2_5,Barriers_Data_Policy,Barriers,Data,Policy,change to YN
+Q4.1_2_6,Barriers_Data_Other,Barriers,Data,Other,change to YN
+Q4.1_2_7,Barriers_Data_None,Barriers,Data,None,change to YN
+Q4.1_2_88,Barriers_Data_NotSure,Barriers,Data,NotSure,change to YN
+Q4.1_2_99,Barriers_Data_NA,Barriers,Data,NA,change to YN
+Q4.1_3_1,Barriers_Code_Infrastructure,Barriers,Code,Infrastructure,change to YN
+Q4.1_3_2,Barriers_Code_Training,Barriers,Code,Training,change to YN
+Q4.1_3_3,Barriers_Code_Norms,Barriers,Code,Norms,change to YN
+Q4.1_3_4,Barriers_Code_Incentives,Barriers,Code,Incentives,change to YN
+Q4.1_3_5,Barriers_Code_Policy,Barriers,Code,Policy,change to YN
+Q4.1_3_6,Barriers_Code_Other,Barriers,Code,Other,change to YN
+Q4.1_3_7,Barriers_Code_None,Barriers,Code,None,change to YN
+Q4.1_3_88,Barriers_Code_NotSure,Barriers,Code,NotSure,change to YN
+Q4.1_3_99,Barriers_Code_NA,Barriers,Code,NA,change to YN
+Q4.1_4_1,Barriers_Materials_Infrastructure,Barriers,Materials,Infrastructure,change to YN
+Q4.1_4_2,Barriers_Materials_Training,Barriers,Materials,Training,change to YN
+Q4.1_4_3,Barriers_Materials_Norms,Barriers,Materials,Norms,change to YN
+Q4.1_4_4,Barriers_Materials_Incentives,Barriers,Materials,Incentives,change to YN
+Q4.1_4_5,Barriers_Materials_Policy,Barriers,Materials,Policy,change to YN
+Q4.1_4_6,Barriers_Materials_Other,Barriers,Materials,Other,change to YN
+Q4.1_4_7,Barriers_Materials_None,Barriers,Materials,None,change to YN
+Q4.1_4_88,Barriers_Materials_NotSure,Barriers,Materials,NotSure,change to YN
+Q4.1_4_99,Barriers_Materials_NA,Barriers,Materials,NA,change to YN
+Q4.1_5_1,Barriers_Preprint_Infrastructure,Barriers,Preprint,Infrastructure,change to YN
+Q4.1_5_2,Barriers_Preprint_Training,Barriers,Preprint,Training,change to YN
+Q4.1_5_3,Barriers_Preprint_Norms,Barriers,Preprint,Norms,change to YN
+Q4.1_5_4,Barriers_Preprint_Incentives,Barriers,Preprint,Incentives,change to YN
+Q4.1_5_5,Barriers_Preprint_Policy,Barriers,Preprint,Policy,change to YN
+Q4.1_5_6,Barriers_Preprint_Other,Barriers,Preprint,Other,change to YN
+Q4.1_5_7,Barriers_Preprint_None,Barriers,Preprint,None,change to YN
+Q4.1_5_88,Barriers_Preprint_NotSure,Barriers,Preprint,NotSure,change to YN
+Q4.1_5_99,Barriers_Preprint_NA,Barriers,Preprint,NA,change to YN
+Q4.1_6_1,Barriers_Prereg_Infrastructure,Barriers,Prereg,Infrastructure,change to YN
+Q4.1_6_2,Barriers_Prereg_Training,Barriers,Prereg,Training,change to YN
+Q4.1_6_3,Barriers_Prereg_Norms,Barriers,Prereg,Norms,change to YN
+Q4.1_6_4,Barriers_Prereg_Incentives,Barriers,Prereg,Incentives,change to YN
+Q4.1_6_5,Barriers_Prereg_Policy,Barriers,Prereg,Policy,change to YN
+Q4.1_6_6,Barriers_Prereg_Other,Barriers,Prereg,Other,change to YN
+Q4.1_6_7,Barriers_Prereg_None,Barriers,Prereg,None,change to YN
+Q4.1_6_88,Barriers_Prereg_NotSure,Barriers,Prereg,NotSure,change to YN
+Q4.1_6_99,Barriers_Prereg_NA,Barriers,Prereg,NA,change to YN
+Q4.1_7_1,Barriers_RegRep_Infrastructure,Barriers,RegRep,Infrastructure,change to YN
+Q4.1_7_2,Barriers_RegRep_Training,Barriers,RegRep,Training,change to YN
+Q4.1_7_3,Barriers_RegRep_Norms,Barriers,RegRep,Norms,change to YN
+Q4.1_7_4,Barriers_RegRep_Incentives,Barriers,RegRep,Incentives,change to YN
+Q4.1_7_5,Barriers_RegRep_Policy,Barriers,RegRep,Policy,change to YN
+Q4.1_7_6,Barriers_RegRep_Other,Barriers,RegRep,Other,change to YN
+Q4.1_7_7,Barriers_RegRep_None,Barriers,RegRep,None,change to YN
+Q4.1_7_88,Barriers_RegRep_NotSure,Barriers,RegRep,NotSure,change to YN
+Q4.1_7_99,Barriers_RegRep_NA,Barriers,RegRep,NA,change to YN
+Q4.2,OtherBarriers_OA,OtherBarriers,OA,,
+Q4.3,OtherBarriers_Data,OtherBarriers,Data,,
+Q4.4,OtherBarriers_Code,OtherBarriers,Code,,
+Q4.5,OtherBarriers_Materials,OtherBarriers,Materials,,
+Q4.6,OtherBarriers_Preprint,OtherBarriers,Preprint,,
+Q4.7,OtherBarriers_Prereg,OtherBarriers,Prereg,,
+Q4.8,OtherBarriers_RegRep,OtherBarriers,RegRep,,
+Q4.9_1,Downsides_OA,Downsides,OA,,
+Q4.9_2,Downsides_Data,Downsides,Data,,
+Q4.9_3,Downsides_Code,Downsides,Code,,
+Q4.9_4,Downsides_Materials,Downsides,Materials,,
+Q4.9_5,Downsides_Preprint,Downsides,Preprint,,
+Q4.9_6,Downsides_Prereg,Downsides,Prereg,,
+Q4.9_7,Downsides_RegRep,Downsides,RegRep,,
+Q4.10,WhatDownsides_OA,WhatDownsides,OA,,
+Q4.11,WhatDownsides_Data,WhatDownsides,Data,,
+Q4.12,WhatDownsides_Code,WhatDownsides,Code,,
+Q4.13,WhatDownsides_Materials,WhatDownsides,Materials,,
+Q4.14,WhatDownsides_Preprint,WhatDownsides,Preprint,,
+Q4.15,WhatDownsides_Prereg,WhatDownsides,Prereg,,
+Q4.16,WhatDownsides_RegRep,WhatDownsides,RegRep,,
+Q5.1_1,CurrentRecruitment_PubNub,CurrentRecruitment,PubNub,,
+Q5.1_2,CurrentRecruitment_PubPrestige,CurrentRecruitment,PubPrestige,,
+Q5.1_3,CurrentRecruitment_PubQual,CurrentRecruitment,PubQual,,
+Q5.1_4,CurrentRecruitment_Authorship,CurrentRecruitment,Authorship,,
+Q5.1_5,CurrentRecruitment_Citation,CurrentRecruitment,Citation,,
+Q5.1_6,CurrentRecruitment_Grant,CurrentRecruitment,Grant,,
+Q5.1_7,CurrentRecruitment_Impact,CurrentRecruitment,Impact,,
+Q5.1_8,CurrentRecruitment_Teaching,CurrentRecruitment,Teaching,,
+Q5.1_9,CurrentRecruitment_Supervision,CurrentRecruitment,Supervision,,
+Q5.1_10,CurrentRecruitment_Service,CurrentRecruitment,Service,,
+Q5.1_11,CurrentRecruitment_Citizenship,CurrentRecruitment,Citizenship,,
+Q5.1_12,CurrentRecruitment_Reputation,CurrentRecruitment,Reputation,,
+Q5.1_13,CurrentRecruitment_Collaboration,CurrentRecruitment,Collaboration,,
+Q5.1_14,CurrentRecruitment_OpenResearch,CurrentRecruitment,OpenResearch,,
+Q5.1_15,CurrentRecruitment_Other1_score,CurrentRecruitment,,,
+Q5.1_15_TEXT,CurrentRecruitment_Other1,CurrentRecruitment,,,merge similar other recruitment into new column
+Q5.1_16,CurrentRecruitment_Other2_score,CurrentRecruitment,,,
+Q5.1_16_TEXT,CurrentRecruitment_Other2,CurrentRecruitment,,,merge similar other recruitment into new column
+Q5.1_17,CurrentRecruitment_Other3_score,CurrentRecruitment,,,
+Q5.1_17_TEXT,CurrentRecruitment_Other3,CurrentRecruitment,,,merge similar other recruitment into new column
+Q5.2_1,FutureRecruitment_PubNub,FutureRecruitment,PubNub,,
+Q5.2_2,FutureRecruitment_PubPrestige,FutureRecruitment,PubPrestige,,
+Q5.2_3,FutureRecruitment_PubQual,FutureRecruitment,PubQual,,
+Q5.2_4,FutureRecruitment_Authorship,FutureRecruitment,Authorship,,
+Q5.2_5,FutureRecruitment_Citation,FutureRecruitment,Citation,,
+Q5.2_6,FutureRecruitment_Grant,FutureRecruitment,Grant,,
+Q5.2_7,FutureRecruitment_Impact,FutureRecruitment,Impact,,
+Q5.2_8,FutureRecruitment_Teaching,FutureRecruitment,Teaching,,
+Q5.2_9,FutureRecruitment_Supervision,FutureRecruitment,Supervision,,
+Q5.2_10,FutureRecruitment_Service,FutureRecruitment,Service,,
+Q5.2_11,FutureRecruitment_Citizenship,FutureRecruitment,Citizenship,,
+Q5.2_12,FutureRecruitment_Reputation,FutureRecruitment,Reputation,,
+Q5.2_13,FutureRecruitment_Collaboration,FutureRecruitment,Collaboration,,
+Q5.2_14,FutureRecruitment_OpenResearch,FutureRecruitment,OpenResearch,,
+Q5.2_15,FutureRecruitment_Other1_score,FutureRecruitment,,,
+Q5.2_15_TEXT,FutureRecruitment_Other1,FutureRecruitment,,,merge similar other recruitment into new column
+Q5.2_16,FutureRecruitment_Other2_score,FutureRecruitment,,,
+Q5.2_16_TEXT,FutureRecruitment_Other2,FutureRecruitment,,,merge similar other recruitment into new column
+Q5.2_17,FutureRecruitment_Other3_score,FutureRecruitment,,,
+Q5.2_17_TEXT,FutureRecruitment_Other3,FutureRecruitment,,,merge similar other recruitment into new column
+Q6.1_1,Training_OA,Training,OA,,
+Q6.1_2,Training_DMP,Training,DMP,,
+Q6.1_3,Training_FAIR,Training,FAIR,,
+Q6.1_4,Training_Ethics,Training,Ethics,,
+Q6.1_5,Training_Code,Training,Code,,
+Q6.1_6,Training_Materials,Training,Materials,,
+Q6.1_7,Training_Licences,Training,Licences,,
+Q6.1_8,Training_Prereg,Training,Prereg,,
+Q6.1_9,Training_Preprint,Training,Preprint,,
+Q6.1_10,Training_Recruitement,Training,Recruitement,,
+Q6.1_11,Training_Other1_score,Training,,,
+Q6.1_11_TEXT,Training_Other1,Training,,,merge similar other training into new column
+Q6.1_12,Training_Other2_score,Training,,,
+Q6.1_12_TEXT,Training_Other2_score,Training,,,merge similar other training into new column
+Q6.1_13,Training_Other3_score,Training,,,
+Q6.1_13_TEXT,Training_Other3,Training,,,merge similar other training into new column
+Q6.2_1,Support_Seminar,Support,Seminar,,
+Q6.2_2,Support_Mentoring,Support,Mentoring,,
+Q6.2_3,Support_Coaching,Support,Coaching,,
+Q6.2_4,Support_Network,Support,Network,,
+Q6.2_5,Support_Resources,Support,Resources,,
+Q6.2_6,Support_Other1_score,Support,,,
+Q6.2_6_TEXT,Support_Other1,Support,,,merge similar other support into new column
+Q6.2_7,Support_Other2_score,Support,,,
+Q6.2_7_TEXT,Support_Other2,Support,,,merge similar other support into new column
+Q6.2_8,Support_Other3_score,Support,,,
+Q6.2_8_TEXT,Support_Other3,Support,,,merge similar other support into new column
+Q7.1_1_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_2_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_3_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_4_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_5_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_6_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_7_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_8_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_9_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_10_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_11_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_12_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_13_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_14_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_15_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_16_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_17_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_18_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_19_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_20_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_21_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_22_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_23_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_24_1_1,Inventory,Inventory,,,merge in one column with randomID
+Q7.1_25_1_1,Inventory,Inventory,,,merge in one column with randomID
+randomID,randomID,randomID,,,
