@@ -1,0 +1,14 @@
+StartDate,EndDate,Status,Progress,Duration (in seconds),Finished,RecordedDate,ResponseId,DistributionChannel,UserLanguage,Q1.1,Q1.2,Q1.3,Q1.4,came_from,Referer
+Start Date,End Date,Response Type,Progress,Duration (in seconds),Finished,Recorded Date,Response ID,Distribution Channel,User Language,"Here you can provide your contact details for a chance to win one of five £50 gift cards from Blackwell’s. This form is independent from the survey and any contact information you provide cannot be linked to your survey responses in any way. Your personal data will be stored securely, and it will be accessed exclusively to select winners through a raffle. The information will be permanently deleted once all raffle prizes are accepted, and it will not be used for any other purpose.
+
+
+You can modify your contact details, and/or withdraw your consent, at any time until XX month 2021 by contacting the Reproducible Research Oxford Coordinator, Dr Malika Ihle (malika.ihle@anthro.ox.ac.uk). 
+
+Consent *required
+
+
+Qualtrics.SurveyEngine.setEmbeddedData(""came_from"", document.referrer || """");","Minimally, please enter either your email address or your phone number, so that we can notify you if you are selected as one of the winners.
+[field-came_from]
+Name (optional)",Email (optional),Phone number (optional),came_from,Referer
+"{""ImportId"":""startDate"",""timeZone"":""Europe/London""}","{""ImportId"":""endDate"",""timeZone"":""Europe/London""}","{""ImportId"":""status""}","{""ImportId"":""progress""}","{""ImportId"":""duration""}","{""ImportId"":""finished""}","{""ImportId"":""recordedDate"",""timeZone"":""Europe/London""}","{""ImportId"":""_recordId""}","{""ImportId"":""distributionChannel""}","{""ImportId"":""userLanguage""}","{""ImportId"":""QID47""}","{""ImportId"":""QID71_TEXT""}","{""ImportId"":""QID72_TEXT""}","{""ImportId"":""QID73_TEXT""}","{""ImportId"":""came_from""}","{""ImportId"":""Referer""}"
+2020-12-15 10:20:30,2020-12-15 10:21:03,IP Address,100,32,True,2020-12-15 10:21:03,R_2PzXtkHNCw1QJIR,anonymous,EN-GB,I consent to entering the raffle and to processing of the information I provide as outlined above.,test with copy,ikabbbleu@free.fr,0033637619030,https://oxfordxpsy.az1.qualtrics.com/jfe/form/SV_5hjUyhQg36ajXkF,https://oxfordxpsy.az1.qualtrics.com/jfe/form/SV_5hjUyhQg36ajXkF
