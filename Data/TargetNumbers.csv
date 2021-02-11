@@ -1,7 +1,7 @@
 Div,StaffTotal,StaffTarget,StudentTotal,StudentTarget
-Medical Sciences Division,3921,784,1450,290
-Social Sciences Division,1097,219,1234,247
-"Mathematical, Physical, and Life Sciences Division",1871,374,2511,502
-Humanities Division,779,156,1054,211
-"Gardens, Libraries and Museums",61,12,0,0
-Department for Continuing Education,43,9,107,21
+MSD,3921,784,1450,290
+SSD,1097,219,1234,247
+MPLS,1871,374,2511,502
+Hum,779,156,1054,211
+GLAM,61,12,0,0
+ContEd,43,9,107,21
