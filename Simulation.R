@@ -217,6 +217,7 @@ RepresentativenessTotal <- targetnumbers %>% group_by(Div) %>% summarise(RepStud
                                                                          RepStaff =StaffRecorded/StaffTotal*100)
 mean(RepresentativenessTotal$RepStudent, na.rm=TRUE) ## added
 
+
 # Awareness
 # ## All
 # par(mfrow = c(3, 3))
