@@ -25,6 +25,12 @@ head(realdata)
 head(simdata)
 head(surveyindex, 10)
 head(targetnumbers)
+
+targetnumbers$Div[targetnumbers$Div == "Social Sciences Division"] <- "SSD"
+targetnumbers$Div[targetnumbers$Div == "Humanities Division"] <- "Hum"
+targetnumbers$Div[targetnumbers$Div == "Department for Continuing Education"] <- "ContEd"
+targetnumbers$Div[targetnumbers$Div == "Mathematical, Physical, and Life Sciences Division"] <- "MPLS"
+targetnumbers$Div[targetnumbers$Div == "Medical Sciences Division"] <- "MSD"
 }
 
 # SIM DATA
