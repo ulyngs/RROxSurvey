@@ -84,8 +84,18 @@ pgrdata$Dept[!is.na(pgrdata$Dept9)] <- pgrdata$Dept9[!is.na(pgrdata$Dept9)]
 pgrdata$Dept[!is.na(pgrdata$Dept10)] <- pgrdata$Dept10[!is.na(pgrdata$Dept10)]
 table(pgrdata$Dept)
 
+## Other Department
 table(pgrdata$OtherDept)
+pgrdata[!is.na(pgrdata$OtherDept),c('OtherDept', 'Dept', 'Div')]
 
+### recoding of Dept for otherdept actually in the list
+pgrdata$Dept[!is.na(pgrdata$OtherDept) & (pgrdata$OtherDept == "Wellcome Centre for Human Genetics" |
+              pgrdata$OtherDept == "Experimental Medicine"|
+             pgrdata$OtherDept == "Nuffield Department of Experimental Medicine")] <- "Nuffield Department of Clinical Medicine"
+
+pgrdata$Dept[!is.na(pgrdata$OtherDept) & str_detect(pgrdata$OtherDept, "Oxford Internet Institute")] <- "Oxford Internet Institute"
+
+pgrdata[!is.na(pgrdata$Dept) & pgrdata$Dept == "Other",]
 
 # clean up long longer useful column
 unwanted_colnames <- c("DivCol", "ColDiv", names(pgrdata[, grep(pattern="Dept[0-9]+", colnames(pgrdata))]))
@@ -122,9 +132,27 @@ colSums(!is.na(pgrdata))
 ## Representativeness per Division
 targetnumbers <- merge(targetnumbers, pgrdata[pgrdata$StudentStaff == 'Student',] %>% group_by(Div) %>% summarise (StudentRecorded = n()), by = "Div", all.x = TRUE)
 targetnumbers <- merge(targetnumbers, pgrdata[pgrdata$StudentStaff == 'Staff',] %>% group_by(Div) %>% summarise (StaffRecorded = n()), by = "Div", all.x = TRUE)
-targetnumbers <- merge(targetnumbers, data.frame(targetnumbers %>% group_by(Div) %>% summarise(RepStudent = StudentRecorded/StudentTotal*100,
+targetnumbers <- merge(targetnumbers, data.frame(targetnumbers %>% group_by(Div) %>% summarise(RepStudent2019 = StudentRecorded/StudentTotal2019*100,
+                                                                                               RepStudent2021 = StudentRecorded/StudentTotal2021*100,
                                                                                                 RepStaff = StaffRecorded/StaffTotal*100)))
-mean(targetnumbers$RepStudent, na.rm=TRUE) 
+mean(targetnumbers$RepStudent2021, na.rm=TRUE) 
+
+## number of responses per Dpt
+
+data.frame(pgrdata[pgrdata$StudentStaff == "Student",] %>% group_by(Div, Dept) %>% summarise(n = n()))
+
+## survey duration in minutes
+summary(as.numeric(pgrdata$SurveyDur[pgrdata$Finished == "True" & pgrdata$StudentStaff == "Student"]))/60
+
+## Experience Duration
+summary(pgrdata$Duration[pgrdata$StudentStaff == "Student"])
+data.frame(pgrdata[pgrdata$StudentStaff == "Student",] %>% group_by(Div) %>% summarise(minDuration = min(Duration, na.rm=TRUE),
+                                                                                       medDuration = median(Duration, na.rm=TRUE),
+                                                                                       meanDuration = mean(Duration, na.rm=TRUE),
+                                                                                       maxDuration = max(Duration, na.rm=TRUE),
+                                                                                       n = n(),
+                                                                                       NADuration = sum(is.na(Duration))))
+
 }
 
 ###############
@@ -323,7 +351,7 @@ pgrdata_Awareness_plot
 # ggsave(pgrdata_Awareness_plot, file=here("Figures/pgrdata_Awareness.png"), width=10, height=8)
 
 ## clean up
-rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle, pgrdata_Awareness_plot)
+rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle)
 
 }
 
@@ -511,7 +539,7 @@ rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, a
   # ggsave(pgrdata_Effect_plot, file=here("Figures/pgrdata_Effect.png"), width=10, height=8)
   
   ## clean up
- rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle, pgrdata_Effect_plot)
+ rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle)
   
 }
 
@@ -909,7 +937,7 @@ head(pgrdata_Barriers)
  # ggsave(pgrdata_Barriers_plot, file=here("Figures/pgrdata_Barriers.png"), width=10, height=8)
   
   ## clean up
- rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle, pgrdata_Barriers_plot)
+ rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle)
   
 }
 
@@ -923,6 +951,64 @@ pgrdata_OtherBarriers <- pgrdata_OtherBarriers[rowSums(!is.na(pgrdata_OtherBarri
 
 ## Nb of responses
 pgrdata_OtherBarriers %>% summarise(across (everything(), ~sum(!is.na(.))))
+
+## categorise barriers
+pgrdata_OtherBarriers$OtherBarriers_OA_recode <- NA
+pgrdata_OtherBarriers$OtherBarriers_Data_recode <- NA
+pgrdata_OtherBarriers$OtherBarriers_Code_recode <- NA
+pgrdata_OtherBarriers$OtherBarriers_Materials_recode <- NA
+pgrdata_OtherBarriers$OtherBarriers_Preprint_recode <- NA
+pgrdata_OtherBarriers$OtherBarriers_Prereg_recode <- NA
+pgrdata_OtherBarriers$OtherBarriers_RegRep_recode <- NA
+
+### OA
+pgrdata_OtherBarriers$OtherBarriers_OA_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_OA, "industry")] <- 'industry collaboration policies'
+pgrdata_OtherBarriers$OtherBarriers_OA_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_OA, c("fee|fees|cost|costs|costly|money|expensive|funding|funds|financial|pay|charges"))] <- 'ficancial cost'
+pgrdata_OtherBarriers$OtherBarriers_OA_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_OA, "journal quality")] <- 'OA are lower quality journals'
+
+table(pgrdata_OtherBarriers$OtherBarriers_OA_recode)
+
+## Data
+pgrdata_OtherBarriers$OtherBarriers_Data_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Data, "industry")] <- 'industry collaboration policies'
+pgrdata_OtherBarriers$OtherBarriers_Data_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Data, "managing data")] <- 'data management difficult and lack convention for metadata'
+pgrdata_OtherBarriers$OtherBarriers_Data_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Data, "anonymising|complex governance requirements|sensitive|privacy")] <- 'sensitive data'
+pgrdata_OtherBarriers$OtherBarriers_Data_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Data, "I do not have the authority to share")] <- 'data not owned'
+pgrdata_OtherBarriers$OtherBarriers_Data_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Data, "scannes oeuvers")] <- 'data not always digital'
+
+table(pgrdata_OtherBarriers$OtherBarriers_Data_recode)
+
+## Code
+pgrdata_OtherBarriers$OtherBarriers_Code_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Code, "sharing research ideas")] <- 'fear of scooping'
+pgrdata_OtherBarriers$OtherBarriers_Code_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Code, "time")] <- 'time investment'
+
+table(pgrdata_OtherBarriers$OtherBarriers_Code_recode)
+
+## Materials
+pgrdata_OtherBarriers$OtherBarriers_Materials_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Materials, "sharing research ideas")] <- 'fear of scooping'
+pgrdata_OtherBarriers$OtherBarriers_Materials_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Materials, "managing data")] <- 'materials management difficult and lack convention for metadata'
+pgrdata_OtherBarriers$OtherBarriers_Materials_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Materials, "libraries were not accessible")] <- 'materials not always digital'
+
+table(pgrdata_OtherBarriers$OtherBarriers_Materials_recode)
+
+## Preprint
+pgrdata_OtherBarriers$OtherBarriers_Preprint_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Preprint, "sharing research ideas")] <- 'fear of scooping'
+
+table(pgrdata_OtherBarriers$OtherBarriers_Preprint_recode)
+
+## Preregistration
+pgrdata_OtherBarriers$OtherBarriers_Prereg_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Prereg, "sharing research ideas")] <- 'fear of scooping'
+pgrdata_OtherBarriers$OtherBarriers_Prereg_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_Prereg, "funding to run a pilot study")] <- 'lack of funding for pilot studies'
+
+
+table(pgrdata_OtherBarriers$OtherBarriers_Prereg_recode)
+
+
+## Registered Report
+pgrdata_OtherBarriers$OtherBarriers_RegRep_recode[str_detect(pgrdata_OtherBarriers$OtherBarriers_RegRep, "inherently messy data")] <- 'challenge inherited from the the difficulties associated with data management'
+
+table(pgrdata_OtherBarriers$OtherBarriers_RegRep_recode)
+
+
 
 }
 
@@ -1123,7 +1209,7 @@ rm(dataframe, prgdata_Downsides_Freq)
   # ggsave(pgrdata_Downsides_plot, file=here("Figures/pgrdata_Downsides.png"), width=10, height=8)
   
   ## clean up
-  rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle, pgrdata_Downsides_plot)
+  rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle)
   
 }
 
@@ -1137,6 +1223,70 @@ rm(dataframe, prgdata_Downsides_Freq)
    
   ## Nb of responses
   pgrdata_WhatDownsides %>% summarise(across (everything(), ~sum(!is.na(.))))
+  
+  
+  ## categorise barriers
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode <- NA
+  pgrdata_WhatDownsides$WhatDownsides_Data_recode <- NA
+  pgrdata_WhatDownsides$WhatDownsides_Code_recode <- NA
+  pgrdata_WhatDownsides$WhatDownsides_Materials_recode <- NA
+  pgrdata_WhatDownsides$WhatDownsides_Preprint_recode <- NA
+  pgrdata_WhatDownsides$WhatDownsides_Prereg_recode <- NA
+  pgrdata_WhatDownsides$WhatDownsides_RegRep_recode <- NA
+  
+  ### OA
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, "harmful|Inappropriate")] <- 'harmful or inappropriate application or interpretation of the research'
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, c("fee|fees|cost|costs|costly|money|expensive|Expensive|funding|funds|financial|pay|charges"))] <- 'ficancial cost (including inequalities of access to publishing between institutions'
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, "commercialisation|Patenting")] <- 'Intellectual property concerns'
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, "journal income|funding to produce the journals|funding the production")] <- 'loss of journal income, need to find other means of journal production' # this needs to overwrite category 'financial costs to the author'
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, "may reduce the quality of peer review|less rigorous")] <- 'may reduce quality of peer review, or OA articles found to be less rigorous' # this needs to overwrite category 'financial costs to the author'
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, "duplication of research|plagiarism")] <- 'concerns about duplication of research or plagiarism'
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, "limits publication options")] <- 'fewer (prestigious) journal options'
+  pgrdata_WhatDownsides$WhatDownsides_OA_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_OA, "express their opinion")] <- 'If all information is public, people would be less able to express their opinion'
+ 
+  table(pgrdata_WhatDownsides$WhatDownsides_OA_recode)
+  #x <-  pgrdata_WhatDownsides[!is.na(pgrdata_WhatDownsides$WhatDownsides_OA),c('WhatDownsides_OA','WhatDownsides_OA_recode')]
+  
+  # ## Data
+  # pgrdata_WhatDownsides$WhatDownsides_Data_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Data, "industry")] <- 'industry collaboration policies'
+  # pgrdata_WhatDownsides$WhatDownsides_Data_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Data, "managing data")] <- 'data management difficult and lack convention for metadata'
+  # pgrdata_WhatDownsides$WhatDownsides_Data_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Data, "anonymising|complex governance requirements|sensitive|privacy")] <- 'sensitive data'
+  # pgrdata_WhatDownsides$WhatDownsides_Data_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Data, "I do not have the authority to share")] <- 'data not owned'
+  # pgrdata_WhatDownsides$WhatDownsides_Data_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Data, "scannes oeuvers")] <- 'data not always digital'
+  # 
+  # table(pgrdata_WhatDownsides$WhatDownsides_Data_recode)
+  # 
+  # ## Code
+  # pgrdata_WhatDownsides$WhatDownsides_Code_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Code, "sharing research ideas")] <- 'fear of scooping'
+  # pgrdata_WhatDownsides$WhatDownsides_Code_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Code, "time")] <- 'time investment'
+  # 
+  # table(pgrdata_WhatDownsides$WhatDownsides_Code_recode)
+  # 
+  # ## Materials
+  # pgrdata_WhatDownsides$WhatDownsides_Materials_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Materials, "sharing research ideas")] <- 'fear of scooping'
+  # pgrdata_WhatDownsides$WhatDownsides_Materials_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Materials, "managing data")] <- 'materials management difficult and lack convention for metadata'
+  # pgrdata_WhatDownsides$WhatDownsides_Materials_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Materials, "libraries were not accessible")] <- 'materials not always digital'
+  # 
+  # table(pgrdata_WhatDownsides$WhatDownsides_Materials_recode)
+  # 
+  # ## Preprint
+  # pgrdata_WhatDownsides$WhatDownsides_Preprint_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Preprint, "sharing research ideas")] <- 'fear of scooping'
+  # 
+  # table(pgrdata_WhatDownsides$WhatDownsides_Preprint_recode)
+  # 
+  # ## Preregistration
+  # pgrdata_WhatDownsides$WhatDownsides_Prereg_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Prereg, "sharing research ideas")] <- 'fear of scooping'
+  # pgrdata_WhatDownsides$WhatDownsides_Prereg_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_Prereg, "funding to run a pilot study")] <- 'lack of funding for pilot studies'
+  # 
+  # 
+  # table(pgrdata_WhatDownsides$WhatDownsides_Prereg_recode)
+  # 
+  # 
+  # ## Registered Report
+  # pgrdata_WhatDownsides$WhatDownsides_RegRep_recode[str_detect(pgrdata_WhatDownsides$WhatDownsides_RegRep, "inherently messy data")] <- 'challenge inherited from the the difficulties associated with data management'
+  # 
+  # table(pgrdata_WhatDownsides$WhatDownsides_RegRep_recode)
+  
   
 }
 
@@ -1368,7 +1518,7 @@ rm(dataframe, prgdata_Downsides_Freq)
   # ggsave(pgrdata_Training_plot, file=here("Figures/pgrdata_Training.png"), width=10, height=8)
   
   ## clean up
-  rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle, pgrdata_Training_plot)
+  rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle)
   
 }
 
@@ -1461,7 +1611,7 @@ pgrdata_OtherTraining <- pgrdata_OtherTraining[!is.na(pgrdata_OtherTraining$Trai
                                             pgrdata_Support_Network[, c('ID', 'n', 'perc')],
                                             pgrdata_Support_Resources[, c('ID', 'n', 'perc')]))
   
-  rm(pgrdata_Support_Seminar,pgrdata_Support_Mentoring, pgrdata_Support_Coaching, pgrdata_Support_Network, pgrdata_Support_Resources)
+  rm(pgrdata_Support_Seminars,pgrdata_Support_Mentoring, pgrdata_Support_Coaching, pgrdata_Support_Network, pgrdata_Support_Resources)
   
   # create structure with temp variables
   Div <- rep(unique(pgrdata_Support$Div), each = 20) # 5 divisions 4 answers
@@ -1578,7 +1728,7 @@ pgrdata_OtherTraining <- pgrdata_OtherTraining[!is.na(pgrdata_OtherTraining$Trai
   # ggsave(pgrdata_Support_plot, file=here("Figures/pgrdata_Support.png"), width=10, height=8)
   
   ## clean up
-  rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle, pgrdata_Support_plot)
+  rm(data, base_data, grid_data, label_data, number_of_bar, nObsType, empty_bar, angle)
   
 }
 
