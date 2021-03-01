@@ -214,3 +214,36 @@ source("FormatPGRdata.R")
   nrow(pgrdata_Staff_OtherSupport)
   
 }
+
+# plot for all pgrdata_Support
+{
+  All_pgrdata_Support <- pgrdata_Support[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
+  All_pgrdata_Support <- All_pgrdata_Support  %>% group_by(LabelIndiv) %>% mutate(perc = n / sum(n) * 100 )
+  
+  All_pgrdata_Support$LabelIndiv <- factor(All_pgrdata_Support$LabelIndiv, levels = Supports) # this will determine order of the bars
+  str(All_pgrdata_Support)
+  
+  All_pgrdata_Support_plot <- ggplot(All_pgrdata_Support) +      
+    
+    ### Add the stacked bar
+    geom_bar(aes(x=LabelIndiv, y=perc, fill=factor(Answer, 
+                                                   level = c("Essential", "Useful", "Not useful", "Not sure"))),
+             stat="identity", alpha=0.5) +
+    
+    scale_fill_manual(values = rev(c("black", "#ABDDA4", "#FFFFBF", '#D7191C')), 
+                      breaks=rev(c("Not sure", "Not useful", "Useful", "Essential")), 
+                      labels =rev(c("Not sure", "Not useful", "Useful", "Essential")), 
+                      drop = FALSE)+
+    
+    theme_minimal() +
+    theme(
+      legend.position = "right",
+      axis.title = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.y = element_blank(),
+      axis.text.x = element_text(angle = 90),
+      legend.title=element_blank())
+  
+  All_pgrdata_Support_plot
+  
+}

@@ -259,3 +259,38 @@ source("FormatPGRdata.R")
   nrow(pgrdata_Staff_OtherTraining)
   
 }
+
+
+# plot for all pgrdata_Training
+{
+  All_pgrdata_Training <- pgrdata_Training[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
+  All_pgrdata_Training <- All_pgrdata_Training  %>% group_by(LabelIndiv) %>% mutate(perc = n / sum(n) * 100 )
+  
+  All_pgrdata_Training$LabelIndiv <- factor(All_pgrdata_Training$LabelIndiv, levels = Trainings) # this will determine order of the bars
+  str(All_pgrdata_Training)
+  
+  All_pgrdata_Training_plot <- ggplot(All_pgrdata_Training) +      
+    
+    ### Add the stacked bar
+    geom_bar(aes(x=LabelIndiv, y=perc, fill=factor(Answer, 
+                                                   level = c("Written guidance and workshop-led training", "Written guidance only", "No guidance wanted", "No guidance needed",  "Not sure",  "Not applicable" ))),
+             stat="identity", alpha=0.5) +
+    
+    scale_fill_manual(values = rev(c("black", "#666666", "#ABDDA4", "#FFFFBF", '#FDAE61', '#D7191C')), 
+                      breaks=rev(c("Not applicable", "Not sure", "No guidance needed", "No guidance wanted", "Written guidance only",  "Written guidance and workshop-led training")), 
+                      labels =rev(c("Not applicable", "Not sure", "No guidance needed", "No guidance wanted", "Written guidance only",  "Written guidance and workshop-led training")), 
+                      drop = FALSE)+
+    
+    theme_minimal() +
+    theme(
+      legend.position = "right",
+      axis.title = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.y = element_blank(),
+      axis.text.x = element_text(angle = 90),
+      legend.title=element_blank())
+  
+  All_pgrdata_Training_plot
+  
+}
+
