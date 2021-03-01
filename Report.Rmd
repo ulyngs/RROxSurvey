@@ -1,0 +1,103 @@
+---
+title: "RROx survey: Open research at Oxford <br> round 1: PGR - 12 jan 2021 to 1 march 2021"
+author: "Malika Ihle"
+date: "01/03/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Keeping track of decisions
+#### I have not considered non pgr entries
+#### if one item not scored in a grid, I remove those NAs for calculation of percentage for each responses for that item. (i.e. like if items were independants)
+#### for Barriers: select items if at least one answer is not NA to calculate percentages (like if items were independents)
+
+
+## Sample sizes
+```{r, echo = FALSE, include = FALSE}
+source("Sample-sizes.R")
+```
+
+```{r, echo = FALSE}
+sst
+```
+
+## Awareness
+```{r, echo = FALSE, include = FALSE}
+source("Awareness.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_Awareness_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_Awareness_plot
+```
+
+## Overall effect
+```{r, echo = FALSE, include = FALSE}
+source("Effect.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_Effect_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_Effect_plot
+```
+
+## Barriers
+```{r, echo = FALSE, include = FALSE}
+source("Barriers.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_Barriers_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_Barriers_plot
+```
+
+## Downsides
+```{r, echo = FALSE, include = FALSE}
+source("Downsides.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_Downsides_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_Downsides_plot
+```
+
+## Training
+```{r, echo = FALSE, include = FALSE}
+source("Training.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_Training_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_Training_plot
+```
+
+## Support
+```{r, echo = FALSE, include = FALSE}
+source("Support.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_Support_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_Support_plot
+```
