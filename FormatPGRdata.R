@@ -16,21 +16,28 @@ rm(list = ls())
   # display.brewer.pal(n = 11, name = 'RdYlBu')
   # display.brewer.pal(n = 11, name = 'RdBu')
   # brewer.pal(n = 11, name = "RdBu")
+  # brewer.pal(n = 9, name = "Blues")
 }
 
 # load data
 {
-  pgrdata <- read.csv(here("Data/RealData_20210218-1058.csv"), stringsAsFactors=FALSE)
+  pgrdata <- read.csv(here("Data/RealData_20210302-0945.csv"), stringsAsFactors=FALSE)
   # simdata <- read.csv(here("Data/SimulatedData_20201214.csv"), stringsAsFactors=FALSE)
   surveyindex <- read.csv(here("Data/SurveyIndex.csv"), stringsAsFactors=FALSE)
   targetnumbers <- read.csv(here("Data/TargetNumbers.csv"), stringsAsFactors=FALSE)
-  
-  Measures <- c('Open Access', 'Open Data', 'Open Code', 'Open Materials', 'Preprint', 'Preregistration', 'Registered Report')
-  Measures_short <- c('OA', 'Data', 'Code', 'Materials', 'Preprint', 'Prereg', 'RegRep')
-  Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration')
-  Supports <- c('Seminars', 'Mentoring', 'Coaching', 'Support Networks', 'Online Resources')
-  
+
 }
+
+# items to judge
+Measures <- c('Open Access', 'Open Data', 'Open Code', 'Open Materials', 'Preprint', 'Preregistration', 'Registered Report')
+Measures_short <- c('OA', 'Data', 'Code', 'Materials', 'Preprint', 'Prereg', 'RegRep')
+Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration')
+Supports <- c('Seminars', 'Mentoring', 'Coaching', 'Support Networks', 'Online Resources')
+Criteria <- c('Number of publications','Prestige of publication outlet','Quality of publications', 'Authorship role', 'Citations', 'Grant support', 
+              'Impact','Teaching', 'Supervision, mentoring', 'Service to the profession','Citizenship','National and/or international reputation',
+              'Collaboration network','Open research practices')
+Criteria_short <- c("PubNub","PubPrestige","PubQual","Authorship","Citation","Grant","Impact", "Teaching","Supervision","Service","Citizenship",
+                    "Reputation","Collaboration","OpenResearch")
 
 # format pgrdata
 {

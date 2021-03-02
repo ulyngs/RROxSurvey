@@ -123,7 +123,7 @@ source("FormatPGRdata.R")
   pgrdata_Support_plot <- ggplot(data) +     
     
     ### Add the stacked bar
-    geom_bar(aes(x=as.factor(id), y=perc, fill=factor(Answer, level = c("Essential", "Useful", "Not useful", "Not sure"))), stat="identity", alpha=0.5) +
+    geom_bar(aes(x=as.factor(id), y=perc, fill=factor(Answer, level = c("Essential", "Useful", "Not sure", "Not useful"))), stat="identity", alpha=0.5) +
     
     ### Add a val=100/75/50/25 lines. I do it at the beginning to make sur barplots are OVER it.
     geom_segment(data=grid_data, aes(x = end, y = 0, xend = start, yend = 0), colour = "grey", alpha=1, size=0.3 , inherit.aes = FALSE ) + 
@@ -140,9 +140,9 @@ source("FormatPGRdata.R")
     ### Add text showing the value of each lines max(data$id-0.1)
     ggplot2::annotate("text", x = rep(number_of_bar-0.5,5), y = c(0, 25, 50, 75, 100), label = c("0%", "25%", "50%", "75%", "100%") , color="grey", size=3 , angle=0, fontface="bold", hjust=c(0.5,0.5,0.5,0.5,0.5), vjust = -0.2) +
     
-    scale_fill_manual(values = c("black", "#ABDDA4", "#FFFFBF", '#D7191C'), # https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
-                      breaks=c("Not sure", "Not useful", "Useful", "Essential"), 
-                      labels =c("Not sure", "Not useful", "Useful", "Essential"), 
+    scale_fill_manual(values = c("black", "#666666", "#6BAED6", '#08519C'), # https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
+                      breaks=c("Not useful", "Not sure", "Useful", "Essential"), 
+                      labels =c("Not useful", "Not sure", "Useful", "Essential"), 
                       drop = FALSE)+
     
     
@@ -191,6 +191,12 @@ source("FormatPGRdata.R")
   colnames(pgrdata_OtherSupport) <- c('Div', 'Support_Other_score', 'Support_Other', 'Support_Other_score', 'Support_Other','Support_Other_score', 'Support_Other')
   pgrdata_OtherSupport <- rbind(pgrdata_OtherSupport[,c(1,2,3)], pgrdata_OtherSupport[,c(1,4,5)], pgrdata_OtherSupport[, c(1,6,7)])
   pgrdata_OtherSupport <- pgrdata_OtherSupport[!is.na(pgrdata_OtherSupport$Support_Other),] 
+  pgrdata_OtherSupport$Support_Other_recode[str_detect(pgrdata_OtherSupport$Support_Other, 'Funding')] <- 'Funding'
+  pgrdata_OtherSupport$Support_Other_recode[str_detect(pgrdata_OtherSupport$Support_Other, 'find funding')] <- 'Information on how to find funding for publishing in hybrid journal'
+  pgrdata_OtherSupport$Support_Other_recode[str_detect(pgrdata_OtherSupport$Support_Other, 'incentives|recruitment practices|university')] <- 'University endorsement, recruitement criteria, and  policies'
+  pgrdata_OtherSupport$Support_Other_recode[str_detect(pgrdata_OtherSupport$Support_Other, 'Publishing|publishing')] <- 'Training on how to publish transparent research'
+  
+ pgrdata_OtherSupport[,c('Div','Support_Other_recode')]
   
   ## Nb of responses
   nrow(pgrdata_OtherSupport)
@@ -227,12 +233,12 @@ source("FormatPGRdata.R")
     
     ### Add the stacked bar
     geom_bar(aes(x=LabelIndiv, y=perc, fill=factor(Answer, 
-                                                   level = c("Essential", "Useful", "Not useful", "Not sure"))),
+                                                   level = c("Essential", "Useful",  "Not sure","Not useful"))),
              stat="identity", alpha=0.5) +
     
-    scale_fill_manual(values = rev(c("black", "#ABDDA4", "#FFFFBF", '#D7191C')), 
-                      breaks=rev(c("Not sure", "Not useful", "Useful", "Essential")), 
-                      labels =rev(c("Not sure", "Not useful", "Useful", "Essential")), 
+    scale_fill_manual(values = rev(c("black", "#666666", "#6BAED6", '#08519C')), 
+                      breaks=rev(c("Not useful", "Not sure", "Useful", "Essential")), 
+                      labels =rev(c("Not useful", "Not sure", "Useful", "Essential")), 
                       drop = FALSE)+
     
     theme_minimal() +

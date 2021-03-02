@@ -9,20 +9,27 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+---
 ## Keeping track of decisions
 #### I have not considered non pgr entries
 #### if one item not scored in a grid, I remove those NAs for calculation of percentage for each responses for that item. (i.e. like if items were independants)
 #### for Barriers: select items if at least one answer is not NA to calculate percentages (like if items were independents)
-
+---
 
 ## Sample sizes
 ```{r, echo = FALSE, include = FALSE}
 source("Sample-sizes.R")
 ```
-
+### PGR students
 ```{r, echo = FALSE}
 sst
 ```
+### excluded non-PGR students
+to merge with staff later in second round of survey?
+```{r, echo = FALSE}
+sst_staff_pgrdatat
+```
+
 
 ## Awareness
 ```{r, echo = FALSE, include = FALSE}
@@ -63,7 +70,7 @@ All_pgrdata_Barriers_plot
 pgrdata_Barriers_plot
 ```
 
-## Downsides
+## Any Downsides
 ```{r, echo = FALSE, include = FALSE}
 source("Downsides.R")
 ```
@@ -89,6 +96,11 @@ All_pgrdata_Training_plot
 pgrdata_Training_plot
 ```
 
+### extra (workshop-led) training requested
+```{r, echo = FALSE}
+pgrdata_OtherTraining[,c('Div','Training_Other_recode')]
+```
+
 ## Support
 ```{r, echo = FALSE, include = FALSE}
 source("Support.R")
@@ -100,4 +112,9 @@ All_pgrdata_Support_plot
 
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Support_plot
+```
+
+### extra (essential or useful) support requested
+```{r, echo = FALSE}
+pgrdata_OtherSupport[,c('Div','Support_Other_recode')]
 ```
