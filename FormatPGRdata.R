@@ -11,12 +11,14 @@ rm(list = ls())
   library(tidyverse)
   library(here)
   library(RColorBrewer)
+  library(janitor)
   
   # brewer.pal(n = 11, name = "RdYlBu")
   # display.brewer.pal(n = 11, name = 'RdYlBu')
   # display.brewer.pal(n = 11, name = 'RdBu')
   # brewer.pal(n = 11, name = "RdBu")
   # brewer.pal(n = 9, name = "Blues")
+  # brewer.pal(n = 9, name = "RdPu")
 }
 
 # load data
@@ -27,17 +29,6 @@ rm(list = ls())
   targetnumbers <- read.csv(here("Data/TargetNumbers.csv"), stringsAsFactors=FALSE)
 
 }
-
-# items to judge
-Measures <- c('Open Access', 'Open Data', 'Open Code', 'Open Materials', 'Preprint', 'Preregistration', 'Registered Report')
-Measures_short <- c('OA', 'Data', 'Code', 'Materials', 'Preprint', 'Prereg', 'RegRep')
-Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration')
-Supports <- c('Seminars', 'Mentoring', 'Coaching', 'Support Networks', 'Online Resources')
-Criteria <- c('Number of publications','Prestige of publication outlet','Quality of publications', 'Authorship role', 'Citations', 'Grant support', 
-              'Impact','Teaching', 'Supervision, mentoring', 'Service to the profession','Citizenship','National and/or international reputation',
-              'Collaboration network','Open research practices')
-Criteria_short <- c("PubNub","PubPrestige","PubQual","Authorship","Citation","Grant","Impact", "Teaching","Supervision","Service","Citizenship",
-                    "Reputation","Collaboration","OpenResearch")
 
 # format pgrdata
 {
@@ -119,3 +110,6 @@ Criteria_short <- c("PubNub","PubPrestige","PubQual","Authorship","Citation","Gr
 }
 
 head(pgrdata, 2)
+
+
+source("Functions-and-Parameters.R")
