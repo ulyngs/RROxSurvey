@@ -96,9 +96,9 @@ All_pgrdata_Training_plot
 pgrdata_Training_plot
 ```
 
-### extra (workshop-led) training requested
+### extra workshop-led training requested
 ```{r, echo = FALSE}
-pgrdata_OtherTraining[,c('Div','Training_Other_recode')]
+xtab_OtherTraining %>% knitr::kable()
 ```
 
 ## Support
@@ -114,7 +114,44 @@ All_pgrdata_Support_plot
 pgrdata_Support_plot
 ```
 
-### extra (essential or useful) support requested
+### extra support requested
 ```{r, echo = FALSE}
-pgrdata_OtherSupport[,c('Div','Support_Other_recode')]
+xtab_OtherSupport %>% knitr::kable()
+```
+
+## Perceived current recruitment criteria
+```{r, echo = FALSE, include = FALSE}
+source("CurrentRecruitment.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_CurrentCriteria_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_CurrentCriteria_plot
+```
+
+### other perceived current recruitment criteria
+```{r, echo = FALSE}
+xtab_OtherCurrentRecruitment %>% knitr::kable()
+```
+
+
+## Desired future recruitment criteria
+```{r, echo = FALSE, include = FALSE}
+source("FutureRecruitment.R")
+```
+
+```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
+All_pgrdata_FutureCriteria_plot
+```
+
+```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
+pgrdata_FutureCriteria_plot
+```
+
+### other desired future recruitment criteria
+```{r, echo = FALSE}
+xtab_OtherFutureRecruitment %>% knitr::kable()
 ```
