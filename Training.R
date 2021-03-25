@@ -242,7 +242,16 @@ source("FormatPGRdata.R")
   pgrdata_OtherTraining$Training_Other_recode[str_detect(pgrdata_OtherTraining$Training_Other, 'diversity|Diverse|Social Justice')] <- 'How to foster diversity and social justice'
   
 
-  pgrdata_OtherTraining[,c('Div','Training_Other_recode')]
+  pgrdata_OtherTraining[,c('Div','Training_Other_score','Training_Other_recode')]
+  
+  Training_answers <- c("Written guidance and workshop-led training", "Written guidance only", "No guidance wanted", "No guidance needed",  "Not sure",  "Not applicable" )
+  pgrdata_OtherTraining$Training_Other_score <- factor(pgrdata_OtherTraining$Training_Other_score , levels = Training_answers)
+  
+  xtab_OtherTraining <- pgrdata_OtherTraining %>% 
+    tabyl(Training_Other_recode, Training_Other_score, show_missing_levels = FALSE) %>% 
+    arrange(-`Written guidance and workshop-led training`)
+  names(xtab_OtherTraining)[1] <- "" 
+  
   
   ## Nb of responses
   nrow(pgrdata_OtherTraining)

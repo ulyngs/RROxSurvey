@@ -197,6 +197,14 @@ source("FormatPGRdata.R")
   pgrdata_OtherSupport$Support_Other_recode[str_detect(pgrdata_OtherSupport$Support_Other, 'Publishing|publishing')] <- 'Training on how to publish transparent research'
   
  pgrdata_OtherSupport[,c('Div','Support_Other_recode')]
+ 
+ Support_answers <- c("Essential", "Useful", "Not sure", "Not useful")
+ pgrdata_OtherSupport$Support_Other_score <- factor(pgrdata_OtherSupport$Support_Other_score , levels = Support_answers)
+ 
+  xtab_OtherSupport <- pgrdata_OtherSupport %>% 
+   tabyl(Support_Other_recode, Support_Other_score, show_missing_levels = FALSE) %>% 
+   arrange(-Essential)
+ names(xtab_OtherSupport)[1] <- "" 
   
   ## Nb of responses
   nrow(pgrdata_OtherSupport)

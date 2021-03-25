@@ -82,15 +82,18 @@ ss <- merge(merge(merge(merge(merge(merge(merge(merge(merge(
 ss <- merge(ss, targetnumbers[,c('Div', 'StudentTotal2021')], all.x=TRUE)
 ss <- rbind(ss, c("Total", colSums(ss[,-1])))
 ss[,2:ncol(ss)] <- sapply(ss[,2:ncol(ss)], as.integer)
-ss$PercRepresentativeness <- round(as.numeric(ss$Consent_Affiliation_Role)*100/as.numeric(ss$StudentTotal2021),2)
+ss$PercRepresentativeness <- round(as.numeric(ss$Consent_Affiliation_Role)*100/as.numeric(ss$StudentTotal2021),1)
 ss$TotalDrop <- apply(ss[,2:10], 1, max) - apply(ss[,2:10], 1, min)
-ss$PercDrop <- round(ss$TotalDrop/apply(ss[,2:10], 1, max)*100,2)
+ss$PercDrop <- round(ss$TotalDrop/apply(ss[,2:10], 1, max)*100,1)
 str(ss)
 
 library(data.table)
 sst <- transpose(ss)
-rownames(sst) <- colnames(ss)
-colnames(sst) <- NULL
+colnames(sst) <- sst[1,]
+sst <- sst[-1,]
+sst$Question <- colnames(ss)[-1]
+rownames(sst) <- NULL
+sst <- sst[,c(7, 1:6)]
 sst
 
 }
@@ -150,16 +153,20 @@ sst
   ss_staff_pgrdata <- merge(ss_staff_pgrdata, targetnumbers[,c('Div', 'StaffTotal2019')], all.x=TRUE)
   ss_staff_pgrdata <- rbind(ss_staff_pgrdata, c("Total", colSums(ss_staff_pgrdata[,-1], na.rm=TRUE)))
   ss_staff_pgrdata[,2:ncol(ss_staff_pgrdata)] <- sapply(ss_staff_pgrdata[,2:ncol(ss_staff_pgrdata)], as.integer)
-  ss_staff_pgrdata$PercRepresentativeness_staff_pgrdata <- round(as.numeric(ss_staff_pgrdata$Consent_Affiliation_Role)*100/as.numeric(ss_staff_pgrdata$StaffTotal2019),2)
+  ss_staff_pgrdata$PercRepresentativeness_staff_pgrdata <- round(as.numeric(ss_staff_pgrdata$Consent_Affiliation_Role)*100/as.numeric(ss_staff_pgrdata$StaffTotal2019),1)
   ss_staff_pgrdata$TotalDrop <- apply(ss_staff_pgrdata[,2:10], 1, function(x) max(x, na.rm=TRUE)) - apply(ss_staff_pgrdata[,2:10], 1, function(x) min(x, na.rm=TRUE))
-  ss_staff_pgrdata$PercDrop <- round(ss_staff_pgrdata$TotalDrop/apply(ss_staff_pgrdata[,2:10], 1, function(x) max(x, na.rm=TRUE))*100,2)
+  ss_staff_pgrdata$PercDrop <- round(ss_staff_pgrdata$TotalDrop/apply(ss_staff_pgrdata[,2:10], 1, function(x) max(x, na.rm=TRUE))*100,1)
   str(ss_staff_pgrdata)
   
   library(data.table)
   sst_staff_pgrdatat <- transpose(ss_staff_pgrdata)
-  rownames(sst_staff_pgrdatat) <- colnames(ss_staff_pgrdata)
-  colnames(sst_staff_pgrdatat) <- NULL
+  colnames(sst_staff_pgrdatat) <- sst_staff_pgrdatat[1,]
+  sst_staff_pgrdatat <- sst_staff_pgrdatat[-1,]
+  sst_staff_pgrdatat$Question <- colnames(ss_staff_pgrdata)[-1]
+  rownames(sst_staff_pgrdatat) <- NULL
+  sst_staff_pgrdatat <- sst_staff_pgrdatat[,c(8, 1:7)]
   sst_staff_pgrdatat
+
   
 }
 
