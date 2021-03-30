@@ -98,13 +98,14 @@ source("FormatPGRdata.R")
                                             pgrdata_Training_Materials[, c('ID', 'n', 'perc')],
                                             pgrdata_Training_Licences[, c('ID', 'n', 'perc')],
                                             pgrdata_Training_Preprint[, c('ID', 'n', 'perc')],
-                                            pgrdata_Training_Prereg[, c('ID', 'n', 'perc')]))
+                                            pgrdata_Training_Prereg[, c('ID', 'n', 'perc')],
+                                            pgrdata_Training_Recruitement[, c('ID', 'n', 'perc')]))
   
   rm(pgrdata_Training_OA,pgrdata_Training_DMP, pgrdata_Training_FAIR, pgrdata_Training_Ethics, pgrdata_Training_Code,pgrdata_Training_Materials,pgrdata_Training_Preprint,pgrdata_Training_Prereg, pgrdata_Training_Licences)
   
   # create structure with temp variables
   Div <- rep(unique(pgrdata_Training$Div), each = 54) # 5 divisions 6 answers
-  LabelIndiv <- rep(Trainings, each = 6, times = 5) # 9 training
+  LabelIndiv <- rep(Trainings, each = 6, times = 5) # 10 training
   Indiv <-paste(Div, LabelIndiv, sep ="_") 
   ## need to pick an item where all responses are represented
   Answer <- rep(unique(pgrdata_Training$Training_OA[!is.na(pgrdata_Training$Training_OA)]), times= 45) # 6 possible answers - remove 'NA'/ blank answers / skipped items
