@@ -332,7 +332,9 @@ head(pgrdata_Barriers)
     summarize(start=min(id), end=max(id) - empty_bar) %>% 
     rowwise() %>% 
     mutate(title=mean(c(start, end)))
-  
+  base_data2 <- base_data
+  base_data2$title[base_data$Div == 'SSD'] <- 39
+    
   # prepare a data frame for grid (scales)
   grid_data <- base_data
   grid_data$end <- grid_data$end[ c( nrow(grid_data), 1:nrow(grid_data)-1)] + 1
@@ -388,7 +390,7 @@ head(pgrdata_Barriers)
     
     ### Add base line information
     geom_segment(data=base_data, aes(x = start, y = -5, xend = end, yend = -5), colour = "black", alpha=0.8, size=0.6 , inherit.aes = FALSE )  +
-    geom_text(data=base_data, aes(x = title, y = -20, label=Div), hjust=c(1,1,0.5,0, 0), colour = "black", alpha=0.8, size=4, fontface="bold", inherit.aes = FALSE) +
+    geom_text(data=base_data2, aes(x = title, y = -20, label=Div), hjust=c(1,1,0.5,0, 0), vjust=c(0.5,0.5,0.5,0.5, 1), colour = "black", alpha=0.8, size=4, fontface="bold", inherit.aes = FALSE) +
     
     ### Add title in the middle
     ggplot2::annotate("text", x = 0, y = -90, label = "Barriers" , color="black", size=5 , angle=0, fontface="bold", hjust=0.5) 
