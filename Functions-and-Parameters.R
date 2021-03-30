@@ -7,7 +7,7 @@
 
 Measures <- c('Open Access', 'Open Data', 'Open Code', 'Open Materials', 'Preprint', 'Preregistration', 'Registered Report')
 Measures_short <- c('OA', 'Data', 'Code', 'Materials', 'Preprint', 'Prereg', 'RegRep')
-Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration')
+Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration', 'Recruitement')
 Supports <- c('Seminars', 'Mentoring', 'Coaching', 'Support Networks', 'Online Resources')
 Criteria <- c('Number of publications','Prestige of publication outlet','Quality of publications', 'Authorship role', 'Citations', 'Grant support', 
               'Impact','Teaching', 'Supervision, mentoring', 'Service to the profession','Citizenship','National and/or international reputation',
@@ -136,3 +136,33 @@ circular_plot_function <- function(data, answers, title_plot, answers_colors) {
   
 }
 
+regroup_all_data <- function(splitdata, Question){
+  All_data <- splitdata[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
+  All_data <- All_data %>% group_by(LabelIndiv) %>% mutate(perc = n / sum(n) * 100 )
+  All_data$LabelIndiv <- factor(All_data$LabelIndiv, levels = Question) # this will determine order of the bars
+  return(All_data)
+  }
+  
+stacked_barplot_on_regrouped_data <- function(All_data, answers, answers_colors){
+  ggplot(All_data) +
+    
+  ### Add the stacked bar
+  geom_bar(aes(x=LabelIndiv, y=perc, fill=factor(Answer, 
+                                                 level = answers)),
+           stat="identity", alpha=0.5) +
+  
+  scale_fill_manual(values = rev(answers_colors), 
+                    breaks=answers, 
+                    labels =answers, 
+                    drop = FALSE)+
+  
+  theme_minimal() +
+  theme(
+    legend.position = "right",
+    axis.title = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.text.x = element_text(angle = 90),
+    legend.title=element_blank())
+  
+}  
