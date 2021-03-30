@@ -14,6 +14,7 @@ text-align: justify}
 h1.title {
   text-align: center;
 }
+
 </style>
 
 ```{r setup, include=FALSE}
@@ -148,49 +149,128 @@ detrimental_all <- round(summary(All_pgrdata_Effect$perc[All_pgrdata_Effect$Answ
 Hum_Preprint_Detrimental <- round(pgrdata_Effect$perc[pgrdata_Effect$LabelIndiv == "preprint" & pgrdata_Effect$Div == "Hum" & pgrdata_Effect$Answer == "Detrimental"],1)
 ```
 <br>
-Overall, the vast majority of respondents (on average **`r beneficial_all[4]`%**, ranging from **`r beneficial_all[1]`%** to **`r beneficial_all[6]`%**) found that the overall effect of a widespread adoption of open research practices would be beneficial, while very few found that it would be overall detrimental (on average **`r detrimental_all[4]`%**, ranging from **`r detrimental_all[1]`%** to **`r detrimental_all[6]`%**). Lower levels of favorable opinions corresponded did not correspond to a higher level of unfavorable opinions but to a large proportion of respondent who indicated they were unsure about what the overall effect a widespread adoption of open research practices would be. This pattern of 'uncertaintly' from respondents matches well the patterns of lower awareness shown for measures such as Preregistration and Registered Reports. 
+Overall, the vast majority of respondents (on average **`r beneficial_all[4]`%**, ranging from **`r beneficial_all[1]`%** to **`r beneficial_all[6]`%**) found that the overall effect of a widespread adoption of open research practices would be beneficial, while very few found that it would be overall detrimental (on average **`r detrimental_all[4]`%**, ranging from **`r detrimental_all[1]`%** to **`r detrimental_all[6]`%**). Lower levels of favorable opinions did not correspond to a higher level of unfavorable opinions but to a large proportion of respondent who indicated they were unsure about what the overall effect a widespread adoption of open research practices would be. This pattern of 'uncertaintly' from respondents matches well the patterns of lower awareness shown for measures such as Preregistration and Registered Reports. 
 
 ```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
 All_pgrdata_Effect_plot
 ```
 
-When looking at Divisions separately, the previous observations still prevails: respondents were largely thinking that the overall effect of widespread adoption would be beneficial while lower level of favourable opinions were only corresponding to higher level of uncertainty (whose patterns matched the patterns seen in the awareness question) rather than unfavorable opinions. 
+When looking at Divisions separately, the previous observations still prevails: respondents were largely thinking that the overall effect of widespread adoption would be beneficial while lower level of favourable opinions were only corresponding to higher level of uncertainty (whose patterns matched the patterns seen in the awareness question) rather than unfavorable opinions.  
 **Preprint** was judged the most detrimental practice with **`r Hum_Preprint_Detrimental`%** of the PGR students from the Humanities indicating that they think that the overall effect of its widespread adoption would be detrimental. 
 
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Effect_plot
 ```
 
-### Barriers
+### Barriers to adoption of open research practices
+Different factors may contribute to the adoption of open research practices, including:  
+  - infrastructure, i.e. tools, resources, and/or services that enable implementation of the practice (e.g. repositories for digital or physical storage; registries for preregistration; publishing platforms or outlets) and of relevant community standards (e.g. guidelines relating to citation of data and metadata; ethical and legal guidelines for sharing sensitive data);  
+  - training, i.e the acquisition of knowledge and/or skills needed to implement the practice;  
+  - norms, i.e. widespread attitudes and behaviours that support and/or encourage the practice (e.g. the perception that the field is aware of the practice and in favour of implementation; interest from early-career researchers; support from supervisors, mentors);  
+  - incentives, i.e. resources and/or mechanisms that reward the practice (e.g. dedicated funding, awards; institutional recognition);  
+  - policy, i.e. a requirement to implement the practice by relevant stakeholders (e.g. institutions, funders, publishers).  
+
+Time may be perceived as an additional factor contributing to adoption of a practice. Rather, we consider availability of time, or lack thereof, as a consequence of the factors listed above. For example, a researcher may choose to invest the time required to adopt a practice depending on:  
+  - the availability of infrastructure or training, which facilitate implementation;  
+  - the existence of norms in the community, which mitigate the burden on the researcher;  
+  - the presence of incentives, or policy, which reward and/or mandate the practice in the researcher’s field or institution.   
+
+```{r, echo = FALSE, include = FALSE}
+source("Sample-sizes.R")
+```
+A total of **`r sst$Total[sst$Question == "Barriers"]`** PGR students responded to the question:  
+"**Do you face any barriers in adopting the following practices and, if so, what are they?** Tick all that apply and/or provide a brief description for any others."
+```{r, echo = FALSE}
+a <- cbind(" " = c("Number of respondents"), sst[5,2:7])
+rownames(a) <- NULL
+a %>% knitr::kable()
+```
+
 ```{r, echo = FALSE, include = FALSE}
 source("Barriers.R")
+OA_incentives <- round(All_pgrdata_Barriers$perc[All_pgrdata_Barriers$LabelIndiv == 'Open Access' & All_pgrdata_Barriers$Answer == 'Incentives'],1)
+data_training <- round(All_pgrdata_Barriers$perc[All_pgrdata_Barriers$LabelIndiv == 'Open Data' & All_pgrdata_Barriers$Answer == 'Training'],1)
+preprint_none <- round(All_pgrdata_Barriers$perc[All_pgrdata_Barriers$LabelIndiv == 'Preprint' & All_pgrdata_Barriers$Answer == 'None'],1)
 ```
+
+Because each respondent could select multiple answers, the sum of the percentages of respondents selecting each of the options extends beyond 100%. Each of the barriers can still be scrutinised individually in a similar way as before. For example, we can see that, overall, more than 25% of the respondents indicated a lack of incentives to practice **Open Access** publishing (**`r OA_incentives`%** to be exact), a lack of training to practice **Open Data** (**`r data_training`%** to be exact), and no barriers to practice **Preprint** (**`r preprint_none`%**). Overall, we can see that all barriers listed were thought to play some role in the adoption (or lack thereof) of open research practices.
 
 ```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
 All_pgrdata_Barriers_plot
 ```
 
+While the lack of incentives to practice **Open Access** and lack of training to practice **Open Data** is shared across all Divisions, the ~25% of respondents thinking that there are no barriers to **Preprint** are mostly distributed among the MPLS and MSD Divisions where these practices are already more common. 
+
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Barriers_plot
 ```
 
-### Any Downsides
+### Downsides to widespread adoption of  open research practices
+```{r, echo = FALSE, include = FALSE}
+source("Sample-sizes.R")
+```
+A total of **`r sst$Total[sst$Question == "Downsides"]`** PGR students responded to the question:  
+"**In your view, are there any downsides to widespread adoption of the following practices in your field of research?** If so, please provide a brief description."
+```{r, echo = FALSE}
+a <- cbind(" " = c("Number of respondents"), sst[6,2:7])
+rownames(a) <- NULL
+a %>% knitr::kable()
+```
+
 ```{r, echo = FALSE, include = FALSE}
 source("Downsides.R")
+no_downsides <- round(summary(All_pgrdata_Downsides$perc[All_pgrdata_Downsides$Answer == 'No']),1)
+yes_downsides <- round(summary(All_pgrdata_Downsides$perc[All_pgrdata_Downsides$Answer == 'Yes']),1)
+no_downsides_MSD <- round(summary(pgrdata_Downsides$perc[pgrdata_Downsides$Answer == 'No' & pgrdata_Downsides$Div == 'MSD'], na.rm=TRUE),1)
+yes_downsides_data_MSD <- round(pgrdata_Downsides$perc[pgrdata_Downsides$Answer == 'Yes' & pgrdata_Downsides$Div == 'MSD' & pgrdata_Downsides$LabelIndiv == 'Open Data'],1)
+
 ```
+Overall, the vast majority of respondents (on average **`r no_downsides[4]`%**, ranging from **`r no_downsides[1]`%** to **`r no_downsides[6]`%**) found that the widespread adoption of open research practices would have no downsides, while very few found that it would (on average **`r yes_downsides[4]`%**, ranging from **`r yes_downsides[1]`%** to **`r yes_downsides[6]`%**). Lower levels of favorable opinions, like previously, did not correspond to a higher level of unfavorable opinions but to a large proportion of respondent who indicated they were unsure about whether a widespread adoption of open research practices would lead to any downsides. T
 
 ```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
 All_pgrdata_Downsides_plot
 ```
 
+In MSD, more than half (`r no_downsides_MSD[1]`% at minimum) of the respondents thought there were no downsides to any of the measures presented. The MSD (if we exclude ContEd) also presented the highest percentage of respondents (**`r yes_downsides_data_MSD`% **) indicating downsides for an open research practice (namely, **Open Data**).
+
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Downsides_plot
 ```
 
-### Training
+### Training needs
+```{r, echo = FALSE, include = FALSE}
+source("Sample-sizes.R")
+```
+A total of **`r sst$Total[sst$Question == "Training"]`** PGR students responded to the question:  
+"**For which of the following topics do you think more guidance is necessary?** ‘No guidance needed’ indicates that sufficient guidance on the topic is available. ‘No guidance wanted’ indicates that you do not see the net benefit of engaging with the topic. Please list any additional topics in the empty boxes below."
+```{r, echo = FALSE}
+a <- cbind(" " = c("Number of respondents"), sst[9,2:7])
+rownames(a) <- NULL
+a %>% knitr::kable()
+```
+
+The topics listed were:  
+How to publish open access articles, theses, or monographs [labelled **Open Access**]  
+How to prepare data management plans [labelled **Data Management Plan**]  
+How to prepare data and metadata for archiving, and possibly for sharing in a public repository in line with community standards [labelled **Open data**]  
+How to prepare ethics applications that allow archiving of anonymised data in a public repository [lablled **Ethics**]  
+How to write good quality code (including unit testing, version control, reproducible documentation) and share it publicly (e.g. selection of a repository that assigns a DOI) [labelled **Open Code**]  
+How to prepare materials for sharing (e.g. in a digital repository that assigns a DOI, or in a physical repository)
+How to choose and apply licences for sharing resources (e.g. data, materials, and/or code) and navigate relevant legislation (including copyright law, privacy and GDPR law, commercial law, and institutional regulations) [labelled **Licences**]  
+How to prepare preregistrations and/or registered reports (including experimental design, statistics, data simulation) [labelled **Preregistration**]  
+Guidance on sharing preprints (e.g. selection of appropriate repository, consideration of publisher’s rights, ethical considerations) [labelled **Preprint**]  
+How to assess job applications responsibly, fairly, and transparently [labelled ]
+
 ```{r, echo = FALSE, include = FALSE}
 source("Training.R")
+some_guidance_wanted <- All_pgrdata_Training %>% group_by(LabelIndiv) %>% summarise(some_guidance_wanted = round(sum(perc[Answer == 'Written guidance and workshop-led training'], perc[Answer == 'Written guidance only']),1))
+summary_some_guidance_wanted <- summary(some_guidance_wanted$some_guidance_wanted)
+
+no_guidance_needed <- All_pgrdata_Training %>% group_by(LabelIndiv) %>% summarise (perc = round(perc[Answer == 'No guidance needed'],1))
+
+
 ```
+Overall, most respondents indicated they wanted some form of guidance (written guidance and/or worshop-led training) for each of the topics presented (on average **`r summary_some_guidance_wanted[4]`%** of the respondents; ranging from `r summary_some_guidance_wanted[1]`% for Preregistration and Registered Reports to `r summary_some_guidance_wanted[6]`% for FAIR data. 
 
 ```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
 All_pgrdata_Training_plot
@@ -200,7 +280,7 @@ All_pgrdata_Training_plot
 pgrdata_Training_plot
 ```
 
-#### extra workshop-led training requested
+#### extra training requested
 ```{r, echo = FALSE}
 xtab_OtherTraining %>% knitr::kable()
 ```
@@ -251,6 +331,7 @@ source("FutureRecruitment.R")
 All_pgrdata_FutureCriteria_plot
 ```
 
+teaching most desired criteria in Humanities not so elsewhere.
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_FutureCriteria_plot
 ```
