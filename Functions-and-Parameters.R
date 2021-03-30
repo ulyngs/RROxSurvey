@@ -46,7 +46,9 @@ bind_summaries_items <- function(Question, data, columns){
   return(summaryitems)
 }
 
-circular_plot_function <- function(data, answers, title_plot, answers_colors) {
+circular_plot_function <- function(data, Question, answers, title_plot, answers_colors) {
+  
+  data$LabelIndiv <- factor(data$LabelIndiv, levels = Question) # this will determine order of the bars
   
   # Set a number of 'empty bar' to add at the end of each Div
   empty_bar <- 2

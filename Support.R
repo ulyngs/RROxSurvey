@@ -31,18 +31,11 @@ summaryitems <- bind_summaries_items(Supports, pgrdata_Support, Support_columns)
 data <- merge(skeleton, summaryitems, by = "ID", all.x = TRUE)
 rm(skeleton, summaryitems, Support_columns)
 
-data
-
 # plot per Division -----
-str(data)
-data$LabelIndiv <- factor(data$LabelIndiv, levels = Supports) # this will determine order of the bars
-pgrdata_Support_plot <- circular_plot_function(data, Support_answers, title_plot, answers_colors)
-pgrdata_Support_plot
+pgrdata_Support_plot <- circular_plot_function(data, Supports, Support_answers, title_plot, answers_colors)
 
 ## Save as png
-# ggsave(pgrdata_Support_plot, file=here("Figures/pgrdata_Supportfunctions.png"), width=10, height=8)
-
-
+## ggsave(pgrdata_Support_plot, file=here("Figures/pgrdata_Supportfunctions.png"), width=10, height=8)
 
 
 # regroup data split per Division for overall plot -----
@@ -50,9 +43,7 @@ All_pgrdata_Support <- regroup_all_data(data)
 
 # plot regrouped data  -----
 All_pgrdata_Support_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Support, Support_answers, answers_colors)
-# ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Supportfunctions.png"), width=10, height=8)
-
-
+## ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Supportfunctions.png"), width=10, height=8)
 
 
 # pgrdata_OtherSupport -----
