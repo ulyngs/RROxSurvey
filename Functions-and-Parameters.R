@@ -137,14 +137,14 @@ circular_plot_function <- function(data, Question, answers, title_plot, answers_
   
 }
 
-regroup_all_data <- function(splitdata, Question){
+regroup_all_data <- function(splitdata){
   All_data <- splitdata[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
   All_data <- All_data %>% group_by(LabelIndiv) %>% mutate(perc = n / sum(n) * 100 )
-  All_data$LabelIndiv <- factor(All_data$LabelIndiv, levels = Question) # this will determine order of the bars
   return(All_data)
   }
   
-stacked_barplot_on_regrouped_data <- function(All_data, answers, answers_colors){
+stacked_barplot_on_regrouped_data <- function(All_data, Question, answers, answers_colors){
+  All_data$LabelIndiv <- factor(All_data$LabelIndiv, levels = Question) # this will determine order of the bars
   ggplot(All_data) +
     
   ### Add the stacked bar
