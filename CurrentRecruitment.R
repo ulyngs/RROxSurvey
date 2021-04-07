@@ -5,11 +5,8 @@
 
 rm(list = ls())
 source("FormatPGRdata.R")
-source("Functions-and-Parameters.R")
 
 Criteria
-Criteria_short
-names(pgrdata)
 Criteria_columns <- c(expr(CurrentRecruitment_PubNub), expr(CurrentRecruitment_PubPrestige), expr(CurrentRecruitment_PubQual), expr(CurrentRecruitment_Authorship),expr(CurrentRecruitment_Citation),
                       expr(CurrentRecruitment_Grant),expr(CurrentRecruitment_Impact),expr(CurrentRecruitment_Teaching),expr(CurrentRecruitment_Supervision),expr(CurrentRecruitment_Service),
                       expr(CurrentRecruitment_Citizenship),expr(CurrentRecruitment_Reputation),expr(CurrentRecruitment_Collaboration),expr(CurrentRecruitment_OpenResearch))
@@ -23,7 +20,7 @@ title_plot <- 'Current recruitement criteria'
 pgrdata_CurrentCriteria <- pgrdata[pgrdata$StudentStaff == "Student",  
                            c(grep("Div", colnames(pgrdata)), grep(pattern="^CurrentRecruitment", x=colnames(pgrdata)))]
 head(pgrdata_CurrentCriteria)
-names(pgrdata_CurrentCriteria)
+
 
 ## create skeleton of all possible answers
 skeleton <- create_skeleton(Criteria, Divisions, Criteria_answers, Criteria_columns)
@@ -32,15 +29,12 @@ skeleton <- create_skeleton(Criteria, Divisions, Criteria_answers, Criteria_colu
 summaryitems <- bind_summaries_items(Criteria, pgrdata_CurrentCriteria, Criteria_columns)
 
 ## merge summary items to skeleton
-data <- merge(skeleton, summaryitems, by = "ID", all.x = TRUE)
+pgrdata_CurrentCriteria <- merge(skeleton, summaryitems, by = "ID", all.x = TRUE)
 rm(skeleton, summaryitems, Criteria_columns)
 
-data
 
 # plot per Division -----
-str(data)
-data$LabelIndiv <- factor(data$LabelIndiv, levels = Criteria ) # this will determine order of the bars
-pgrdata_CurrentCriteria_plot <- circular_plot_function(data, Criteria_answers, title_plot, answers_colors)
+pgrdata_CurrentCriteria_plot <- circular_plot_function(pgrdata_CurrentCriteria, Criteria, Criteria_answers, title_plot, answers_colors)
 pgrdata_CurrentCriteria_plot
 
 ## Save at png
@@ -49,7 +43,7 @@ pgrdata_CurrentCriteria_plot
 
 
 # plot for all pgrdata_Support  -----
-All_pgrdata_CurrentCriteria <- data[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
+All_pgrdata_CurrentCriteria <- pgrdata_CurrentCriteria[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
 All_pgrdata_CurrentCriteria <- All_pgrdata_CurrentCriteria  %>% group_by(LabelIndiv) %>% mutate(perc = n / sum(n) * 100 )
 
 All_pgrdata_CurrentCriteria$LabelIndiv <- factor(All_pgrdata_CurrentCriteria$LabelIndiv, levels = Criteria) # this will determine order of the bars
@@ -95,7 +89,7 @@ All_pgrdata_CurrentCriteria_plot
 
 
 
-# pgrdata_OtherSupport -----
+# pgrdata_OtherCurrentCriteria -----
 pgrdata_OtherCurrentRecruitment <- pgrdata[pgrdata$StudentStaff == "Student",  
                                 c(grep("Div", colnames(pgrdata)), grep(pattern="^CurrentRecruitment_Other", x=colnames(pgrdata)))]
 

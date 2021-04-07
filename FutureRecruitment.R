@@ -5,11 +5,8 @@
 
 rm(list = ls())
 source("FormatPGRdata.R")
-source("Functions-and-Parameters.R")
 
 Criteria
-Criteria_short
-names(pgrdata)
 Criteria_columns <- c(expr(FutureRecruitment_PubNub), expr(FutureRecruitment_PubPrestige), expr(FutureRecruitment_PubQual), expr(FutureRecruitment_Authorship),expr(FutureRecruitment_Citation),
                       expr(FutureRecruitment_Grant),expr(FutureRecruitment_Impact),expr(FutureRecruitment_Teaching),expr(FutureRecruitment_Supervision),expr(FutureRecruitment_Service),
                       expr(FutureRecruitment_Citizenship),expr(FutureRecruitment_Reputation),expr(FutureRecruitment_Collaboration),expr(FutureRecruitment_OpenResearch))
@@ -35,12 +32,9 @@ summaryitems <- bind_summaries_items(Criteria, pgrdata_FutureCriteria, Criteria_
 data <- merge(skeleton, summaryitems, by = "ID", all.x = TRUE)
 rm(skeleton, summaryitems, Criteria_columns)
 
-data
 
 # plot per Division -----
-str(data)
-data$LabelIndiv <- factor(data$LabelIndiv, levels = Criteria ) # this will determine order of the bars
-pgrdata_FutureCriteria_plot <- circular_plot_function(data, Criteria_answers, title_plot, answers_colors)
+pgrdata_FutureCriteria_plot <- circular_plot_function(data, Criteria, Criteria_answers, title_plot, answers_colors)
 pgrdata_FutureCriteria_plot
 
 ## Save at png
