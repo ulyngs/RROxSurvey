@@ -7,7 +7,7 @@
 
 Measures <- c('Open Access', 'Open Data', 'Open Code', 'Open Materials', 'Preprint', 'Preregistration', 'Registered Report')
 Measures_short <- c('OA', 'Data', 'Code', 'Materials', 'Preprint', 'Prereg', 'RegRep')
-Supports <- c('Seminars', 'Mentoring', 'Coaching', 'Support Networks', 'Online Resources')
+
 Criteria <- c('Number of publications','Prestige of publication outlet','Quality of publications', 'Authorship role', 'Citations', 'Grant support', 
               'Impact','Teaching', 'Supervision, mentoring', 'Service to the profession','Citizenship','National and/or international reputation',
               'Collaboration network','Open research practices')

@@ -7,7 +7,7 @@ rm(list = ls())
 source("FormatPGRdata.R")
 
 
-Supports
+Supports <- c('Seminars', 'Mentoring', 'Coaching', 'Support Networks', 'Online Resources')
 Support_columns <- c(expr(Support_Seminar), expr(Support_Mentoring), expr(Support_Coaching), expr(Support_Network),expr(Support_Resources))
 Support_answers <- c("Essential", "Useful", "Not sure", "Not useful")
 answers_colors <- c("black", "#666666", "#6BAED6", '#08519C')
