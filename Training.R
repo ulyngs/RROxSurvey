@@ -7,7 +7,7 @@
 rm(list = ls())
 source("FormatPGRdata.R")
 
-Measures
+
 Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration', 'Recruitement')
 Training_columns <- c(expr(Training_OA), expr(Training_DMP), expr(Training_FAIR), expr(Training_Ethics),
                       expr(Training_Code),expr(Training_Materials),expr(Training_Licences), 
@@ -35,16 +35,17 @@ rm(skeleton, summaryitems, Training_columns)
 
 
 # plot per Division -----
-pgrdata_Training_plot <- circular_plot_function(pgrdata_Training, Measures, Training_answers, title_plot, answers_colors)
-
-## ggsave(pgrdata_Training_plot, file=here("Figures/pgrdata_Training2.png"), width=10, height=8)
+pgrdata_Training_plot <- circular_plot_function(pgrdata_Training, Trainings, Training_answers, title_plot, answers_colors)
+pgrdata_Training_plot
+## ggsave(pgrdata_Training_plot, file=here("Figures/pgrdata_Training.png"), width=10, height=8)
 
 # regroup data split per Division for overall plot -----
 All_pgrdata_Training <- regroup_all_data(pgrdata_Training)
 
 # plot regrouped data  -----
-All_pgrdata_Training_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Training, Training_answers, answers_colors)
-## ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Supportfunctions.png"), width=10, height=8)
+All_pgrdata_Training_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Training, Trainings, Training_answers, answers_colors)
+All_pgrdata_Training_plot
+## ggsave(All_pgrdata_Training_plot, file=here("Figures/All_pgrdata_Training_plot.png"), width=10, height=8)
 
 
 
