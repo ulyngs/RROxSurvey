@@ -7,7 +7,6 @@
 
 Measures <- c('Open Access', 'Open Data', 'Open Code', 'Open Materials', 'Preprint', 'Preregistration', 'Registered Report')
 Measures_short <- c('OA', 'Data', 'Code', 'Materials', 'Preprint', 'Prereg', 'RegRep')
-Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration', 'Recruitement')
 Supports <- c('Seminars', 'Mentoring', 'Coaching', 'Support Networks', 'Online Resources')
 Criteria <- c('Number of publications','Prestige of publication outlet','Quality of publications', 'Authorship role', 'Citations', 'Grant support', 
               'Impact','Teaching', 'Supervision, mentoring', 'Service to the profession','Citizenship','National and/or international reputation',
@@ -38,7 +37,7 @@ summarise_item <-  function(data, item, name_item){
 }
 
 bind_summaries_items <- function(Question, data, columns){
-  summaryitems <- list(length(Question))
+  summaryitems <- vector(mode= "list", length = length(Question))
   for (i in 1:length(Question)) {
     summaryitems[[i]] <-  summarise_item(data,columns[[i]],Question[i])
   }
