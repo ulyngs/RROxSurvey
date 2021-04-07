@@ -33,17 +33,18 @@ rm(skeleton, summaryitems, Support_columns)
 
 # plot per Division -----
 pgrdata_Support_plot <- circular_plot_function(data, Supports, Support_answers, title_plot, answers_colors)
-
+pgrdata_Support_plot
 ## Save as png
-## ggsave(pgrdata_Support_plot, file=here("Figures/pgrdata_Supportfunctions.png"), width=10, height=8)
+## ggsave(pgrdata_Support_plot, file=here("Figures/pgrdata_Support.png"), width=10, height=8)
 
 
 # regroup data split per Division for overall plot -----
 All_pgrdata_Support <- regroup_all_data(data)
 
 # plot regrouped data  -----
-All_pgrdata_Support_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Support, Support_answers, answers_colors)
-## ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Supportfunctions.png"), width=10, height=8)
+All_pgrdata_Support_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Support, Supports, Support_answers, answers_colors)
+All_pgrdata_Support_plot
+## ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Support.png"), width=10, height=8)
 
 
 # pgrdata_OtherSupport -----
