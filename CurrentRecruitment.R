@@ -42,51 +42,12 @@ pgrdata_CurrentCriteria_plot
 
 
 
-# plot for all pgrdata_Support  -----
-All_pgrdata_CurrentCriteria <- pgrdata_CurrentCriteria[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
-All_pgrdata_CurrentCriteria <- All_pgrdata_CurrentCriteria  %>% group_by(LabelIndiv) %>% mutate(perc = n / sum(n) * 100 )
+# regroup data split per Division for overall plot -----
+All_pgrdata_CurrentCriteria <- regroup_all_data(pgrdata_CurrentCriteria)
 
-All_pgrdata_CurrentCriteria$LabelIndiv <- factor(All_pgrdata_CurrentCriteria$LabelIndiv, levels = Criteria) # this will determine order of the bars
-str(All_pgrdata_CurrentCriteria)
-
-All_pgrdata_CurrentCriteria_plot <- ggplot(All_pgrdata_CurrentCriteria) +      
-  
-  ### Add the stacked bar
-  geom_bar(aes(x=LabelIndiv, y=perc, fill=factor(Answer, 
-                                                 level = Criteria_answers)),
-           stat="identity", alpha=0.5) +
-  
-  scale_fill_manual(values = rev(answers_colors), 
-                    breaks=Criteria_answers, 
-                    labels =Criteria_answers, 
-                    drop = FALSE)+
-  
-  theme_minimal() +
-  theme(
-    legend.position = "right",
-    axis.title = element_blank(),
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor.y = element_blank(),
-    axis.text.x = element_text(angle = 90),
-    legend.title=element_blank())
-
-All_pgrdata_CurrentCriteria_plot
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# plot regrouped data  -----
+All_pgrdata_CurrentCriteria_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_CurrentCriteria, Criteria, Criteria_answers, answers_colors)
+## ggsave(All_pgrdata_CurrentCriteria_plot, file=here("Figures/All_pgrdata_CurrentCriteria_plot.png"), width=10, height=8)
 
 
 # pgrdata_OtherCurrentCriteria -----

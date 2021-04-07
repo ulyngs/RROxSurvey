@@ -29,12 +29,12 @@ skeleton <- create_skeleton(Criteria, Divisions, Criteria_answers, Criteria_colu
 summaryitems <- bind_summaries_items(Criteria, pgrdata_FutureCriteria, Criteria_columns)
 
 ## merge summary items to skeleton
-data <- merge(skeleton, summaryitems, by = "ID", all.x = TRUE)
+pgrdata_FutureCriteria <- merge(skeleton, summaryitems, by = "ID", all.x = TRUE)
 rm(skeleton, summaryitems, Criteria_columns)
 
 
 # plot per Division -----
-pgrdata_FutureCriteria_plot <- circular_plot_function(data, Criteria, Criteria_answers, title_plot, answers_colors)
+pgrdata_FutureCriteria_plot <- circular_plot_function(pgrdata_FutureCriteria, Criteria, Criteria_answers, title_plot, answers_colors)
 pgrdata_FutureCriteria_plot
 
 ## Save at png
@@ -42,50 +42,14 @@ pgrdata_FutureCriteria_plot
 
 
 
-# plot for all pgrdata_Support  -----
-All_pgrdata_FutureCriteria <- data[,c("LabelIndiv", "Answer", "n")] %>% group_by(LabelIndiv, Answer) %>% summarise (n = sum(n, na.rm=TRUE)) 
-All_pgrdata_FutureCriteria <- All_pgrdata_FutureCriteria  %>% group_by(LabelIndiv) %>% mutate(perc = n / sum(n) * 100 )
 
-All_pgrdata_FutureCriteria$LabelIndiv <- factor(All_pgrdata_FutureCriteria$LabelIndiv, levels = Criteria) # this will determine order of the bars
-str(All_pgrdata_FutureCriteria)
+# regroup data split per Division for overall plot -----
+All_pgrdata_FutureCriteria <- regroup_all_data(pgrdata_FutureCriteria)
 
-All_pgrdata_FutureCriteria_plot <- ggplot(All_pgrdata_FutureCriteria) +      
-  
-  ### Add the stacked bar
-  geom_bar(aes(x=LabelIndiv, y=perc, fill=factor(Answer, 
-                                                 level = Criteria_answers)),
-           stat="identity", alpha=0.5) +
-  
-  scale_fill_manual(values = rev(answers_colors), 
-                    breaks=Criteria_answers, 
-                    labels =Criteria_answers, 
-                    drop = FALSE)+
-  
-  theme_minimal() +
-  theme(
-    legend.position = "right",
-    axis.title = element_blank(),
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor.y = element_blank(),
-    axis.text.x = element_text(angle = 90),
-    legend.title=element_blank())
-
+# plot regrouped data  -----
+All_pgrdata_FutureCriteria_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_FutureCriteria, Criteria, Criteria_answers, answers_colors)
 All_pgrdata_FutureCriteria_plot
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## ggsave(All_pgrdata_FutureCriteria_plot, file=here("Figures/All_pgrdata_FutureCriteria_plot.png"), width=10, height=8)
 
 
 
