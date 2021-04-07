@@ -40,5 +40,6 @@ pgrdata_Effect_plot <- circular_plot_function(pgrdata_Effect, Measures, Effect_a
 All_pgrdata_Effect <- regroup_all_data(pgrdata_Effect)
 
 # plot regrouped data  -----
-All_pgrdata_Effect_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Effect, Effect_answers, answers_colors)
+All_pgrdata_Effect_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Effect, Measures, Effect_answers, answers_colors)
+All_pgrdata_Effect_plot
 ## ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Supportfunctions.png"), width=10, height=8)
