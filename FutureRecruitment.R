@@ -12,7 +12,8 @@ Criteria_columns <- c(expr(FutureRecruitment_PubNub), expr(FutureRecruitment_Pub
                       expr(FutureRecruitment_Citizenship),expr(FutureRecruitment_Reputation),expr(FutureRecruitment_Collaboration),expr(FutureRecruitment_OpenResearch))
 Criteria_answers <- c("Considerably", "Moderately", "Slightly", "Not at all","Not sure", "Not applicable")
 answers_colors <- c("black", "#666666", "#FDE0DD",'#FA9FB5',"#F768A1",'#DD3497')
-title_plot <- 'Future recruitement criteria'
+title_plot <- 'Future 
+recruitement criteria'
 
 
 # create datadet for plotting per Divisions -----
