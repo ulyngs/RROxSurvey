@@ -64,11 +64,19 @@ pgrdata_OtherSupport$Support_Other_recode[str_detect(pgrdata_OtherSupport$Suppor
 
 pgrdata_OtherSupport[,c('Div','Support_Other_recode')]
 
+pgrdata_OtherSupport$Support_Other_score <- factor(pgrdata_OtherSupport$Support_Other_score , levels = Support_answers)
+
+xtab_OtherSupport <- pgrdata_OtherSupport %>% 
+  tabyl(Support_Other_recode, Support_Other_score, show_missing_levels = FALSE) %>% 
+  arrange(-Essential)
+names(xtab_OtherSupport)[1] <- "" 
+
+
 ## Nb of responses
 nrow(pgrdata_OtherSupport)
 
 
-
+ 
 # pgrdata_Staff_OtherSupport  -----
 pgrdata_Staff_OtherSupport <- pgrdata[pgrdata$StudentStaff == "Staff",  
                                       c(grep("Div", colnames(pgrdata)), grep(pattern="^Support_Other", x=colnames(pgrdata)))]
