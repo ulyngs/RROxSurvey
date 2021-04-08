@@ -9,7 +9,7 @@ Measures <- c('Open Access', 'Open Data', 'Open Code', 'Open Materials', 'Prepri
 Measures_short <- c('OA', 'Data', 'Code', 'Materials', 'Preprint', 'Prereg', 'RegRep')
 
 Criteria <- c('Number of publications','Prestige of publication outlet','Quality of publications', 'Authorship role', 'Citations', 'Grant support', 
-              'Impact','Teaching', 'Supervision, mentoring', 'Service to the profession','Citizenship','National and/or international reputation',
+              'Impact','Teaching', 'Supervision, mentoring', 'Service to the profession','Citizenship','Reputation',
               'Collaboration network','Open research practices')
 Criteria_short <- c("PubNub","PubPrestige","PubQual","Authorship","Citation","Grant","Impact", "Teaching","Supervision","Service","Citizenship",
                     "Reputation","Collaboration","OpenResearch")
@@ -117,22 +117,27 @@ circular_plot_function <- function(data, Question, answers, title_plot, answers_
     theme_minimal() +
     theme(
       legend.position = "bottom",
+      legend.text=element_text(size=13),
       legend.title=element_blank(),
       axis.text = element_blank(),
       axis.title = element_blank(),
-      panel.grid = element_blank()
+      panel.grid = element_blank(),
+      panel.border=element_blank(), axis.ticks.length = unit(0, "mm")
     ) +
+    
+    guides(fill=guide_legend(nrow=2,byrow=FALSE))+
+    
     coord_polar() +
     
     ### Add labels on top of each bar
-    geom_text(data=label_data, aes(x=id, y=105, label=LabelIndiv, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=3, angle= label_data$angle, inherit.aes = FALSE ) +
+    geom_text(data=label_data, aes(x=id, y=105, label=LabelIndiv, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=4.5, angle= label_data$angle, inherit.aes = FALSE ) +
     
     ### Add base line information
     geom_segment(data=base_data, aes(x = start, y = -5, xend = end, yend = -5), colour = "black", alpha=0.8, size=0.6 , inherit.aes = FALSE )  +
     geom_text(data=base_data, aes(x = title, y = -20, label=Div), hjust=c(1,1,0.5,0, 0), colour = "black", alpha=0.8, size=4, fontface="bold", inherit.aes = FALSE) +
     
     ### Add title in the middle
-    ggplot2::annotate("text", x = 0, y = -90, label = title_plot , color="black", size=5 , angle=0, fontface="bold", hjust=0.5) 
+    ggplot2::annotate("text", x = 0, y = -90, label = title_plot , color="black", size=5.5 , angle=0, fontface="bold", hjust=0.5) 
   
   
 }

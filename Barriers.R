@@ -442,14 +442,17 @@ head(pgrdata_Barriers)
                       labels =rev(c("Not applicable", "Not sure",  "Infrastructure", "Training", "Norms" , "Incentives", "Policy", "Other", "None"))
                       , drop = FALSE)+
     
+    scale_y_continuous(labels=function(perc) paste0(perc,"%")) +
+    
     theme_minimal() +
     ggtitle("Barriers") +
     theme(
-      plot.title = element_text(hjust=0.5, face = "bold"),
+      plot.title = element_text(hjust=0.5, size = 14, face = "bold"),
       legend.position = "right",
+      legend.text=element_text(size=11),
       axis.title = element_blank(),
       panel.grid.major.x = element_blank(),
-     # panel.grid.minor.y = element_blank(),
+      axis.text.x = element_text(size = 12),
       legend.title=element_blank())
   
   All_pgrdata_Barriers_plot
