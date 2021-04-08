@@ -8,7 +8,7 @@
 #source("FormatPGRdata.R")
 
 
-Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration', 'Recruitement')
+Trainings <- c('Open Access', 'Data Management', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration', 'Recruitement')
 Training_columns <- c(expr(Training_OA), expr(Training_DMP), expr(Training_FAIR), expr(Training_Ethics),
                       expr(Training_Code),expr(Training_Materials),expr(Training_Licences), 
                        expr(Training_Preprint), expr(Training_Prereg), expr(Training_Recruitement))
