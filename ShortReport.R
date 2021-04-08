@@ -30,6 +30,8 @@ stacked_barplot_CurrentCriteria <- function(All_data, Question, answers, answers
                                                    level = answers)),
              stat="identity", alpha=0.5) +
     
+    scale_y_continuous(labels=function(perc) paste0(perc,"%")) +
+  
     scale_fill_manual(values = rev(answers_colors), 
                       breaks=answers, 
                       labels =answers, 
@@ -37,13 +39,11 @@ stacked_barplot_CurrentCriteria <- function(All_data, Question, answers, answers
     ggtitle('Perceived current recruitement criteria')+
     
     theme_minimal() +
-    theme(
-      legend.position = "right",
+    theme(plot.title = element_text(size = 14, face = "bold"),
       axis.title = element_blank(),
       panel.grid.major.x = element_blank(),
       panel.grid.minor.y = element_blank(),
-      axis.text.x = element_blank(),
-      legend.title=element_blank())
+      axis.text.x = element_blank()     )
   
 }  
 All_pgrdata_CurrentCriteria_plot_to_merge <- stacked_barplot_CurrentCriteria(All_pgrdata_CurrentCriteria,Criteria,Criteria_answers,answers_colors)
@@ -56,6 +56,7 @@ stacked_barplot_FutureCriteria <- function(All_data, Question, answers, answers_
     geom_bar(aes(x=LabelIndiv, y=perc, fill=factor(Answer, 
                                                    level = answers)),
              stat="identity", alpha=0.5) +
+    scale_y_continuous(labels=function(perc) paste0(perc,"%")) +
     
     scale_fill_manual(values = rev(answers_colors), 
                       breaks=answers, 
@@ -65,17 +66,15 @@ stacked_barplot_FutureCriteria <- function(All_data, Question, answers, answers_
     ggtitle('Desired recruitement criteria')+
     
     theme_minimal() +
-    theme(
-      legend.position = "right",
-      axis.title = element_blank(),
+    theme(plot.title = element_text(size = 14, face = "bold"),
+     axis.title = element_blank(),
       panel.grid.major.x = element_blank(),
       panel.grid.minor.y = element_blank(),
-      axis.text.x = element_text(angle = 90, hjust = 1),
-      legend.title=element_blank())
+      axis.text.x = element_text(angle = 67.5, hjust = 1, size = 12))
   
 }  
 All_pgrdata_FutureCriteria_plot_to_merge <- stacked_barplot_FutureCriteria(All_pgrdata_FutureCriteria,Criteria,Criteria_answers,answers_colors)
 
-combined <- All_pgrdata_CurrentCriteria_plot_to_merge +  All_pgrdata_FutureCriteria_plot_to_merge & theme(legend.position="right")
+combined <- All_pgrdata_CurrentCriteria_plot_to_merge +  All_pgrdata_FutureCriteria_plot_to_merge & theme(legend.position="right",  legend.title=element_blank(), legend.text=element_text(size=9))
 Fig4 <- combined + plot_layout(nrow = 2, guide = "collect")
 Fig4
