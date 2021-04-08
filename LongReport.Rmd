@@ -76,9 +76,6 @@ a %>% knitr::kable()
 An additional **`r totalStaff_duringPGRcollection`** staff members (i.e. academics, research staff or  fellows, or research support staff)  filled out the survey. Their responses will be merged to the views gathered in the second round of data collection, which will target this population specifically.
 
 ### Awareness of open research practices
-```{r, echo = FALSE, include = FALSE}
-source("Sample-sizes.R")
-```
 A total of **`r sst$Total[sst$Question == "Awareness"]`** PGR students responded to the question:  
 "**Which of the following research practices are you aware of, and which do you have experience with?** ‘Aware only’ indicates that the practice is applicable to your discipline, but you do not have direct experience with it. ‘Accessing/using only’ refers to resources made available by others. ‘Practicing myself’ relates to implementation of the practice in your own research (in addition to, or instead of, accessing/using resources made available by others)."  
 ```{r, echo = FALSE}
@@ -132,9 +129,6 @@ pgrdata_Awareness_plot
 ```
 
 ### Overall effect of open research practices
-```{r, echo = FALSE, include = FALSE}
-source("Sample-sizes.R")
-```
 A total of **`r sst$Total[sst$Question == "Effect"]`** PGR students responded to the question:  
 "**In your opinion, what would be the overall effect of widespread adoption of the following practices in your field of research?**"
 ```{r, echo = FALSE}
@@ -176,9 +170,6 @@ Time may be perceived as an additional factor contributing to adoption of a prac
   - the existence of norms in the community, which mitigate the burden on the researcher;  
   - the presence of incentives, or policy, which reward and/or mandate the practice in the researcher’s field or institution.   
 
-```{r, echo = FALSE, include = FALSE}
-source("Sample-sizes.R")
-```
 A total of **`r sst$Total[sst$Question == "Barriers"]`** PGR students responded to the question:  
 "**Do you face any barriers in adopting the following practices and, if so, what are they?** Tick all that apply and/or provide a brief description for any others."
 ```{r, echo = FALSE}
@@ -207,9 +198,6 @@ pgrdata_Barriers_plot
 ```
 
 ### Downsides to widespread adoption of  open research practices
-```{r, echo = FALSE, include = FALSE}
-source("Sample-sizes.R")
-```
 A total of **`r sst$Total[sst$Question == "Downsides"]`** PGR students responded to the question:  
 "**In your view, are there any downsides to widespread adoption of the following practices in your field of research?** If so, please provide a brief description."
 ```{r, echo = FALSE}
@@ -239,9 +227,6 @@ pgrdata_Downsides_plot
 ```
 
 ### Training needs
-```{r, echo = FALSE, include = FALSE}
-source("Sample-sizes.R")
-```
 A total of **`r sst$Total[sst$Question == "Training"]`** PGR students responded to the question:  
 "**For which of the following topics do you think more guidance is necessary?** ‘No guidance needed’ indicates that sufficient guidance on the topic is available. ‘No guidance wanted’ indicates that you do not see the net benefit of engaging with the topic. Please list any additional topics in the empty boxes below."
 ```{r, echo = FALSE}
@@ -305,6 +290,12 @@ xtab_OtherSupport %>% knitr::kable()
 ```
 
 ### Perceived current recruitment criteria
+```{r, echo = FALSE}
+a <- cbind( " " = c("Number of respondents"), sst[7,2:7])
+rownames(a) <- NULL
+a %>% knitr::kable()
+```
+
 ```{r, echo = FALSE, include = FALSE}
 source("CurrentRecruitment.R")
 ```
@@ -324,6 +315,12 @@ xtab_OtherCurrentRecruitment %>% knitr::kable()
 
 
 ### Desired future recruitment criteria
+```{r, echo = FALSE}
+a <- cbind( " " = c("Number of respondents"), sst[8,2:7])
+rownames(a) <- NULL
+a %>% knitr::kable()
+```
+
 ```{r, echo = FALSE, include = FALSE}
 source("FutureRecruitment.R")
 ```
