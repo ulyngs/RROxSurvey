@@ -196,6 +196,15 @@ While the lack of incentives to practice **Open Access** and lack of training to
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Barriers_plot
 ```
+#### Other barriers
+```{r, echo = FALSE, include = FALSE}
+source('OtherBarriersDownsides.R')
+```
+
+```{r, echo = FALSE}
+rownames(pivot_table_OtherBarriers) <- NULL
+pivot_table_OtherBarriers %>% knitr::kable()
+```
 
 ### Downsides to widespread adoption of  open research practices
 A total of **`r sst$Total[sst$Question == "Downsides"]`** PGR students responded to the question:  
