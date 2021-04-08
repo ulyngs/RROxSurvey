@@ -3,8 +3,8 @@
 ## round 1: PGR - 12 jan 2021 to 1 march 2021 ##
 ################################################
 
-rm(list = ls())
-source("FormatPGRdata.R")
+#rm(list = ls())
+#source("FormatPGRdata.R")
 
 Measures
 Effect_columns <- c(expr(Effect_OA), expr(Effect_Data), expr(Effect_Code), expr(Effect_Materials),expr(Effect_Preprint),expr(Effect_Prereg),expr(Effect_RegRep))

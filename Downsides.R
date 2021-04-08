@@ -3,8 +3,8 @@
 ## round 1: PGR - 12 jan 2021 to 1 march 2021 ##
 ################################################
 
-rm(list = ls())
-source("FormatPGRdata.R")
+#rm(list = ls())
+#source("FormatPGRdata.R")
 
 Measures
 Downsides_columns <- c(expr(Downsides_OA), expr(Downsides_Data), expr(Downsides_Code), expr(Downsides_Materials),expr(Downsides_Preprint),expr(Downsides_Prereg),expr(Downsides_RegRep))

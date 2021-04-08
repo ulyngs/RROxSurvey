@@ -3,8 +3,8 @@
 ## round 1: PGR - 12 jan 2021 to 1 march 2021 ##
 ################################################
 
-rm(list = ls())
-source("FormatPGRdata.R")
+#rm(list = ls())
+#source("FormatPGRdata.R")
 
 Criteria
 Criteria_columns <- c(expr(FutureRecruitment_PubNub), expr(FutureRecruitment_PubPrestige), expr(FutureRecruitment_PubQual), expr(FutureRecruitment_Authorship),expr(FutureRecruitment_Citation),

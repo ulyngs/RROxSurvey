@@ -3,8 +3,8 @@
 ## round 1: PGR - 12 jan 2021 to 1 march 2021 ##
 ################################################
 
-rm(list = ls())
-source("FormatPGRdata.R")
+#rm(list = ls())
+#source("FormatPGRdata.R")
 
 ##############
 ## Barriers ##
@@ -421,6 +421,15 @@ head(pgrdata_Barriers)
   All_pgrdata_Barriers$LabelIndiv <- factor(All_pgrdata_Barriers$LabelIndiv, levels = Measures) # this will determine order of the bars
   str(All_pgrdata_Barriers)
   
+ # All_pgrdata_Barriers2 <- regroup_all_data(pgrdata_Barriers)
+  
+  
+  
+  
+ # Barriers <- c("Infrastructure", "Training", "Norms" , "Incentives", "Policy", "Other", "None", "Not sure","Not applicable")
+  #answers_barriers <- c("NA", "NotSure", "Infrastructure", "Training", "Norms" , "Incentives", "Policy", "Other", "None")
+ # answers_colors <- c("black", "#666666", "#E31A1C", "#FC4E2A", "#FD8D3C", "#FEB24C", "#FED976", "#FFEDA0", "#B8E186")
+ # stacked_barplot_on_regrouped_data(All_pgrdata_Barriers, Barriers, answers_barriers, answers_colors)
   
   
   All_pgrdata_Barriers_plot <- ggplot(All_pgrdata_Barriers) +      
@@ -434,7 +443,9 @@ head(pgrdata_Barriers)
                       , drop = FALSE)+
     
     theme_minimal() +
+    ggtitle("Barriers") +
     theme(
+      plot.title = element_text(hjust=0.5, face = "bold"),
       legend.position = "right",
       axis.title = element_blank(),
       panel.grid.major.x = element_blank(),

@@ -4,8 +4,8 @@
 ################################################
 
 
-rm(list = ls())
-source("FormatPGRdata.R")
+#rm(list = ls())
+#source("FormatPGRdata.R")
 
 
 Trainings <- c('Open Access', 'Data Management Plan', 'FAIR Data','Ethics','Open Code', 'Open Materials', 'Licences', 'Preprint', 'Preregistration', 'Recruitement')

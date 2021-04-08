@@ -59,6 +59,7 @@ Definitions of relevant terms vary across fields of research and contexts. There
 
 ### Sample sizes
 ```{r, echo = FALSE, include = FALSE}
+source("FormatPGRdata.R")
 source("Sample-sizes.R")
 totalStaff_duringPGRcollection <- sst_staff_pgrdatat$Total[sst_staff_pgrdatat$Question == "Consent_Affiliation_Role"]
 ```
