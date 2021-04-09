@@ -234,6 +234,11 @@ In MSD, more than half (`r no_downsides_MSD[1]`% at minimum) of the respondents 
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Downsides_plot
 ```
+#### what downsides
+```{r, echo = FALSE}
+rownames(pivot_table_WhatDownsides) <- NULL
+pivot_table_WhatDownsides %>% knitr::kable()
+```
 
 ### Training needs
 A total of **`r sst$Total[sst$Question == "Training"]`** PGR students responded to the question:  
