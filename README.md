@@ -11,8 +11,7 @@ Contains the list of items to judges or categories, and functions to prepare the
 function to create circular plots, and functions to regroup the data previously split by Divisions and to create a stacked bar plot.
 
 
-PROBLEM ---> The function to create circular plots need to be improved to accept argument (question) to change some layout.
-But if implemented as it is (uncommenting the if statement lines), the LongReport.Rmd doesn't compile.
+PROBLEM-SOLVED ---> The function to create circular plots needed to be improved to accept argument (the name of the dataset) to change some layout; the LongReport.Rmd couldn't compile as it was.
 
 
 ## 3. Sample-sizes.R
@@ -54,6 +53,7 @@ in Draf-Report folder:
 - ShortReport.R -> create combines figures for a landscape draft report made in Gdoc: https://docs.google.com/document/d/1dc3E3oU9evBrBYhIxMUqiEsvxx_bkc_y/edit
 - Report.html -> version that compiled before changing Function-and-Parameters.R for circular plot to take more arguments depending on the question.
 - LongReport.html -> version that compiled after changing Function-and-Parameters.R (commenting out the argument question to the circular plot)
+- For the actually shared executive sumamry report  https://docs.google.com/document/d/1mxloQSeqGx9fWX_SvNp-t2cISb5OOJWMaPb5ZGy7irs/edit, the figures were created by running the circular plot function 'by hand' (to personalise layout) and saved through the RStudio preview.
 
 - LongReport.Rmd
 current version of the report.
