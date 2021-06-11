@@ -46,6 +46,8 @@ bind_summaries_items <- function(Question, data, columns){
 }
 
 circular_plot_function <- function(data, Question, answers, title_plot, answers_colors) {
+
+  name_data_argument <- deparse(substitute(data)) # get the name of the dataset to apply if statement below
   
   data$LabelIndiv <- factor(data$LabelIndiv, levels = Question) # this will determine order of the bars
   
@@ -74,6 +76,13 @@ circular_plot_function <- function(data, Question, answers, title_plot, answers_
     summarize(start=min(id), end=max(id) - empty_bar) %>% 
     rowwise() %>% 
     mutate(title=mean(c(start, end)))
+  
+if (name_data_argument == 'pgrdata_Awareness'){
+base_data$title[base_data$Div == 'SSD'] <- 39} #for awareness plot
+
+if (name_data_argument == 'pgrdata_Training'){
+base_data$title[base_data$Div == 'SSD'] <- 51} #for training plot
+  
   
   # prepare a data frame for grid (scales)
   grid_data <- base_data
@@ -104,19 +113,18 @@ circular_plot_function <- function(data, Question, answers, title_plot, answers_
     geom_segment(data=grid_data, aes(x = number_of_bar-1, y = 0, xend = number_of_bar, yend = 0), colour = "grey", alpha=1, size=0.3 , inherit.aes = FALSE ) +
     
     ### Add text showing the value of each lines max(data$id-0.1)
-    ggplot2::annotate("text", x = rep(number_of_bar-0.5,5), y = c(0, 25, 50, 75, 100), label = c("0%", "25%", "50%", "75%", "100%") , color="grey", size=3 , angle=0, fontface="bold", hjust=c(0.5,0.5,0.5,0.5,0.5), vjust = -0.2) +
+    ggplot2::annotate("text", x = rep(number_of_bar-0.5,5), y = c(0, 25, 50, 75, 100), label = c("0%", "25%", "50%", "75%", "100%") , color="dimgrey", size=3 , angle=0, fontface="bold", hjust=c(0.5,0.5,0.5,0.5,0.5), vjust = -0.2) +
     
-    scale_fill_manual(values = answers_colors, # https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
-                      breaks=rev(answers), 
-                      labels =rev(answers), 
+    scale_fill_manual(values = rev(answers_colors), # https://www.datanovia.com/en/blog/top-r-color-palettes-to-know-for-great-data-visualization/
+                      breaks = answers, 
+                      labels = answers, 
                       drop = FALSE)+
-    
-    
+
     scale_x_discrete(expand = c(0, 0)) +
-    ylim(-100,150) +
+    ylim(-70,150) +
     theme_minimal() +
     theme(
-      legend.position = "bottom",
+      legend.position = "right",
       legend.text=element_text(size=13),
       legend.title=element_blank(),
       axis.text = element_blank(),
@@ -125,19 +133,19 @@ circular_plot_function <- function(data, Question, answers, title_plot, answers_
       panel.border=element_blank(), axis.ticks.length = unit(0, "mm")
     ) +
     
-    guides(fill=guide_legend(nrow=2,byrow=FALSE))+
+   # guides(fill=guide_legend(nrow=2,byrow=FALSE))+
     
     coord_polar() +
     
     ### Add labels on top of each bar
-    geom_text(data=label_data, aes(x=id, y=105, label=LabelIndiv, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=4.5, angle= label_data$angle, inherit.aes = FALSE ) +
+    geom_text(data=label_data, aes(x=id, y=105, label=LabelIndiv, hjust=hjust), color="black", fontface="bold",alpha=0.6, size=4.3, angle= label_data$angle, inherit.aes = FALSE ) + 
     
     ### Add base line information
     geom_segment(data=base_data, aes(x = start, y = -5, xend = end, yend = -5), colour = "black", alpha=0.8, size=0.6 , inherit.aes = FALSE )  +
-    geom_text(data=base_data, aes(x = title, y = -20, label=Div), hjust=c(1,1,0.5,0, 0), colour = "black", alpha=0.8, size=4, fontface="bold", inherit.aes = FALSE) +
+    geom_text(data=base_data, aes(x = title, y = -20, label=Div), hjust=c(1,1,0.5,0, 0), colour = "black", alpha=0.8,  size=4, fontface="bold", inherit.aes = FALSE) + 
     
     ### Add title in the middle
-    ggplot2::annotate("text", x = 0, y = -90, label = title_plot , color="black", size=5.5 , angle=0, fontface="bold", hjust=0.5) 
+    ggplot2::annotate("text", x = 0, y = -60, label = title_plot , color="black", size=5.5 , angle=0, fontface="bold", hjust=0.5) 
   
   
 }
