@@ -41,4 +41,4 @@ All_pgrdata_Awareness <- regroup_all_data(pgrdata_Awareness)
 # plot regrouped data  -----
 All_pgrdata_Awareness_plot <- stacked_barplot_on_regrouped_data(All_pgrdata_Awareness, Measures, Awareness_answers, answers_colors)
 All_pgrdata_Awareness_plot
-## ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Supportfunctions.png"), width=10, height=8)
+## ggsave(All_pgrdata_Support_plot, file=here("Figures/All_pgrdata_Awareness_plot.png"), width=10, height=8)
