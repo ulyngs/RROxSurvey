@@ -1,0 +1,144 @@
+---
+title: "example plot function"
+output: html_document
+---
+
+# Set up
+```{r setup, include=FALSE}
+library(tidyverse)
+
+```
+
+## Read in data
+```{r}
+pgrdata_Awareness <-  read_csv(here::here("Data", "processed", "pgrdata_Awareness.csv"))
+```
+
+
+Ok, let's have a look at some data
+
+```{r}
+pgrdata_Awareness
+```
+
+# Try plotting
+Let's set up the response levels
+
+```{r}
+response_levels <- c(
+  "Practicing myself",
+  "Accessing / using only",
+  "Aware only",
+  "Not aware / not sure if applicable",
+  "Not applicable"
+)
+```
+
+## Basic bar chart of answers across everything
+```{r}
+count_by_answer_across_all <- pgrdata_Awareness %>% 
+  group_by(Answer) %>%
+  summarise(num_respondents = sum(n, na.rm = TRUE)) %>% 
+  mutate(Answer = factor(Answer, levels = response_levels))
+  
+count_by_answer_all %>% 
+  ggplot() +
+    geom_bar(aes(x = Answer, y = num_respondents), stat = "identity")
+  
+```
+
+## Basic bar chart where fill shows number answers by division
+```{r}
+count_by_answer_and_div <- pgrdata_Awareness %>% 
+  group_by(Answer, Div) %>%
+  summarise(num_respondents = sum(n, na.rm = TRUE)) %>% 
+  mutate(Answer = factor(Answer, levels = response_levels))
+
+count_by_answer_and_div %>% 
+  ggplot() +
+    geom_bar(aes(x = Answer, y = num_respondents, fill = Div), stat = "identity")
+```
+
+it's super clear that we've got a very low number of responses from conted compared to the other divisions
+
+## Same chart again, but facetted by question
+```{r}
+count_by_answer_and_div_and_orp <- pgrdata_Awareness %>% 
+  group_by(Answer, Div, LabelIndiv) %>%
+  summarise(num_respondents = sum(n, na.rm = TRUE)) %>% 
+  mutate(Answer = factor(Answer, levels = response_levels))
+
+count_by_answer_and_div_and_orp %>% 
+  ggplot() +
+    geom_bar(aes(x = Answer, y = num_respondents, fill = Div), stat = "identity") +
+    facet_wrap(~LabelIndiv)
+```
+
+
+## Let's make fill the awareness level and facetting the div
+```{r}
+count_by_answer_and_div_and_orp %>% 
+  ggplot() +
+    geom_bar(aes(x = LabelIndiv, y = num_respondents, fill = Answer), stat = "identity") +
+    facet_wrap(~Div)
+```
+
+## Let's make the bars even height and set a better color scheme
+```{r}
+answers_colors <- c("#ABDDA4", "#FFFFBF", "#FDAE61", "#D7191C", "black")
+
+count_by_answer_and_div_and_orp %>% 
+  ggplot() +
+    geom_bar(aes(x = LabelIndiv, y = num_respondents, fill = Answer), stat = "identity", position = "fill") +
+    facet_wrap(~Div) +
+    scale_fill_manual(values = answers_colors)
+```
+
+## Let's flip it and have a single column 
+```{r}
+count_by_answer_and_div_and_orp %>% 
+  ggplot() +
+    geom_bar(aes(x = LabelIndiv, y = num_respondents, fill = Answer), stat = "identity", position = "fill") +
+    scale_fill_manual(values = answers_colors) +
+    coord_flip() +
+    facet_wrap(~Div, ncol = 1)
+    
+```
+This is the first useful version - it allows us to easily glance across the different departments
+
+## Let's make the facetting ORP type instead
+```{r}
+count_by_answer_and_div_and_orp %>% 
+  ggplot() +
+    geom_bar(aes(x = Div, y = num_respondents, fill = Answer), stat = "identity", position = "fill") +
+    scale_fill_manual(values = answers_colors) +
+    coord_flip() +
+    facet_wrap(~LabelIndiv, ncol = 1)
+    
+```
+
+This is the second plot - I think this is probably the better one than the one before, because the focus is probably not meant to be on comparing the divisions but rather on comparing the ORPs.
+
+It takes up a bunch of space but I would retain a one-column layout because you can then easily with your eye do the comparison.
+
+### Iterate on this plot
+Let's make the theme minimal, turn the scale into a percentage scale, remove the x and y labels, and increase the font size of the facet wrapping labels
+
+(we might want to also order the division by who has the highest proportion of open practices - this is a bit fiddly to do when we're also doing facet wrapping, but it's possible. There's a useful guide here: https://juliasilge.com/blog/reorder-within/ )
+
+
+```{r}
+count_by_answer_and_div_and_orp %>% 
+  ggplot() +
+    geom_bar(aes(x = Div, y = num_respondents, fill = Answer), stat = "identity", position = "fill") +
+    scale_fill_manual(values = answers_colors) +
+    facet_wrap(~LabelIndiv, scales = "free_x", ncol = 1) +
+    coord_flip() +
+    theme_minimal() +
+    scale_y_continuous(labels = scales::percent) +
+    theme(legend.title = element_blank(),
+          strip.text.x = element_text(size = 10, colour = "black")) +
+    labs(x = "", y = "")
+
+ggsave("figures/example-plot.png", height = 8)
+```
