@@ -41,7 +41,7 @@ count_by_answer_across_all <- pgrdata_Awareness %>%
   summarise(num_respondents = sum(n, na.rm = TRUE)) %>% 
   mutate(Answer = factor(Answer, levels = response_levels))
   
-count_by_answer_all %>% 
+count_by_answer_across_all %>% 
   ggplot() +
     geom_bar(aes(x = Answer, y = num_respondents), stat = "identity")
   
