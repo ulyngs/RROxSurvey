@@ -82,6 +82,12 @@ A total of **`r sst$Total[sst$Question == "Awareness"]`** PGR students responded
 a <- cbind( " " = c("Number of respondents"), sst[3,2:7])
 rownames(a) <- NULL
 a %>% knitr::kable()
+
+## tidyverse style
+# sst %>% 
+#   filter(Question == "Awareness") %>% 
+#   select(-Question) %>% 
+#   knitr::kable(caption = "Number of respondents")
 ```
 
 ```{r, echo = FALSE, include = FALSE}
