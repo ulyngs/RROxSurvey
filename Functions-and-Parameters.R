@@ -53,6 +53,7 @@ circular_plot_function <- function(data, Question, answers, title_plot, answers_
   
   # Set a number of 'empty bar' to add at the end of each Div
   empty_bar <- 2
+  data$Answer <- as.factor(data$Answer)
   nObsType <- nlevels(data$Answer)
   to_add <- data.frame( matrix(NA, empty_bar*nlevels(data$Div)*nObsType, ncol(data)) )
   colnames(to_add) <- colnames(data)
