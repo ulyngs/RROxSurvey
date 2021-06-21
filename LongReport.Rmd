@@ -23,6 +23,8 @@ h1.title {
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(flextable)
+library(tidyverse)
 ```
 
 ---
@@ -75,7 +77,11 @@ Given the low sample size (**5**) for ContEd, we will not interpret the results 
 ```{r general-sample-size, echo = FALSE}
 a <- cbind( " " = c("Number of respondents", "Census 2021 (unofficial)", "Representativeness in %", "Number of dropouts", "Dropouts in %"), sst[c(1, 11, 12, 13, 14),2:7])
 rownames(a) <- NULL
-a %>% knitr::kable()
+#a %>% knitr::kable()
+
+a %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Respondents by Division")
 ```
 
 An additional **`r totalStaff_duringPGRcollection`** staff members (i.e. academics, research staff or  fellows, or research support staff)  filled out the survey. Their responses will be merged to the views gathered in the second round of data collection, which will target this population specifically.
