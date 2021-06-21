@@ -241,10 +241,14 @@ pivot_table_OtherBarriers %>% knitr::kable() %>%
 A total of **`r sst$Total[sst$Question == "Downsides"]`** PGR students responded to the question:  
 "**In your view, are there any downsides to widespread adoption of the following practices in your field of research?** If so, please provide a brief description."
 
-```{r, echo = FALSE}
+```{r downsides-respondents, echo = FALSE}
 a <- cbind(" " = c("Number of respondents"), sst[6,2:7])
 rownames(a) <- NULL
-a %>% knitr::kable()
+#a %>% knitr::kable()
+
+a %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Respondents by Division")
 ```
 
 ```{r, echo = FALSE, include = FALSE}
@@ -270,9 +274,17 @@ pgrdata_Downsides_plot
 
 #### what downsides
 
-```{r, echo = FALSE}
+```{r downsides-table, echo = FALSE}
 rownames(pivot_table_WhatDownsides) <- NULL
-pivot_table_WhatDownsides %>% knitr::kable()
+#pivot_table_WhatDownsides %>% knitr::kable()
+
+# first column is not named - flextable throws an error if cols aren't named 
+colnames(pivot_table_WhatDownsides)[1] <- "Concern"
+
+pivot_table_WhatDownsides %>% 
+  flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "What downsides")
 ```
 
 ### Training needs
@@ -282,7 +294,11 @@ A total of **`r sst$Total[sst$Question == "Training"]`** PGR students responded 
 ```{r, echo = FALSE}
 a <- cbind(" " = c("Number of respondents"), sst[9,2:7])
 rownames(a) <- NULL
-a %>% knitr::kable()
+#a %>% knitr::kable()
+
+a %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Respondents by Division")
 ```
 
 The topics listed were:  
@@ -320,7 +336,14 @@ pgrdata_Training_plot
 #### extra training requested
 
 ```{r, echo = FALSE}
-xtab_OtherTraining %>% knitr::kable()
+#xtab_OtherTraining %>% knitr::kable()
+
+# first column is not named - flextable throws an error if cols aren't named 
+colnames(xtab_OtherTraining)[1] <- "Dimension"
+
+xtab_OtherTraining %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Training requested")
 ```
 
 ### Support
@@ -339,7 +362,14 @@ pgrdata_Support_plot
 #### extra support requested
 
 ```{r, echo = FALSE}
-xtab_OtherSupport %>% knitr::kable()
+#xtab_OtherSupport %>% knitr::kable()
+
+# first column is not named - flextable throws an error if cols aren't named 
+colnames(xtab_OtherSupport)[1] <- "Dimension"
+
+xtab_OtherSupport %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Support requested")
 ```
 
 ### Perceived current recruitment criteria
@@ -347,7 +377,10 @@ xtab_OtherSupport %>% knitr::kable()
 ```{r, echo = FALSE}
 a <- cbind( " " = c("Number of respondents"), sst[7,2:7])
 rownames(a) <- NULL
-a %>% knitr::kable()
+#a %>% knitr::kable()
+a %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Respondents by Divion")
 ```
 
 ```{r, echo = FALSE, include = FALSE}
@@ -365,7 +398,14 @@ pgrdata_CurrentCriteria_plot
 #### other perceived current recruitment criteria
 
 ```{r, echo = FALSE}
-xtab_OtherCurrentRecruitment %>% knitr::kable()
+#xtab_OtherCurrentRecruitment %>% knitr::kable()
+
+# first column is not named - flextable throws an error if cols aren't named 
+colnames(xtab_OtherCurrentRecruitment)[1] <- "Dimension"
+
+xtab_OtherCurrentRecruitment %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Respondents by Divion")
 ```
 
 
@@ -374,7 +414,11 @@ xtab_OtherCurrentRecruitment %>% knitr::kable()
 ```{r, echo = FALSE}
 a <- cbind( " " = c("Number of respondents"), sst[8,2:7])
 rownames(a) <- NULL
-a %>% knitr::kable()
+#a %>% knitr::kable()
+
+a %>% flextable() %>%  
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Respondents by Division")
 ```
 
 ```{r, echo = FALSE, include = FALSE}
@@ -393,5 +437,12 @@ pgrdata_FutureCriteria_plot
 #### other desired future recruitment criteria
 
 ```{r, echo = FALSE}
-xtab_OtherFutureRecruitment %>% knitr::kable()
+#xtab_OtherFutureRecruitment %>% knitr::kable()
+
+# first column is not named - flextable throws an error if cols aren't named 
+colnames(xtab_OtherFutureRecruitment)[1] <- "Dimension"
+
+xtab_OtherFutureRecruitment %>% flextable() %>% 
+  fontsize(size = 9, part = "all") %>% 
+  set_caption(caption = "Respondents by Division")
 ```
