@@ -223,9 +223,17 @@ pgrdata_Barriers_plot
 source('OtherBarriersDownsides.R')
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+# install.packages("magick")
+# install.packages("webshot")
+# webshot::install_phantomjs()
+library(kableExtra)
+
 rownames(pivot_table_OtherBarriers) <- NULL
-pivot_table_OtherBarriers %>% knitr::kable()
+pivot_table_OtherBarriers %>% knitr::kable() %>% 
+  kable_styling("striped") %>%
+  as_image(width = 8)
+
 ```
 
 
