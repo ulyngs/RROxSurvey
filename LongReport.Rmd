@@ -67,11 +67,12 @@ source("FormatPGRdata.R")
 source("Sample-sizes.R")
 totalStaff_duringPGRcollection <- sst_staff_pgrdatat$Total[sst_staff_pgrdatat$Question == "Consent_Affiliation_Role"]
 ```
+
 A total of **`r sst$Total[sst$Question == "Consent_Affiliation_Role"]`** PGR students (i.e. **`r sst$Total[sst$Question == "PercRepresentativeness"]`%** of the total number of students registered in Jan 2021) provided their consent to participating in the survey, as well as their affiliations and their role, which were the only mandatory questions participants needed to answer to be included in the analysis. Among these, **`r sst$Total[sst$Question == "TotalDrop"]`** (**`r sst$Total[sst$Question == "PercDrop"]`%**) respondents dropped out of the survey at various points before the last question. 
 The table below shows the number of respondents per Divisions (Humanities abbreviated by 'Hum'; Mathematical, Physical, and Life Sciences by 'MPLS'; Medical Sciences by 'MSD'; Social Sciences by 'SSD';  Continuing Education by 'ContEd').  
 Given the low sample size (**5**) for ContEd, we will not interpret the results for this department separetely. However, because the representativeness of this sample is in the same range as for the other Divisions (ContEd: 4.3% of the total number of PGR students in that Department took the survey, SSD: 4.7%), we will still include it to the upcoming visual representations.  
 
-```{r general sample size, echo = FALSE}
+```{r general-sample-size, echo = FALSE}
 a <- cbind( " " = c("Number of respondents", "Census 2021 (unofficial)", "Representativeness in %", "Number of dropouts", "Dropouts in %"), sst[c(1, 11, 12, 13, 14),2:7])
 rownames(a) <- NULL
 a %>% knitr::kable()
@@ -168,20 +169,23 @@ pgrdata_Effect_plot
 ```
 
 ### Barriers to adoption of open research practices
-Different factors may contribute to the adoption of open research practices, including:  
-  - infrastructure, i.e. tools, resources, and/or services that enable implementation of the practice (e.g. repositories for digital or physical storage; registries for preregistration; publishing platforms or outlets) and of relevant community standards (e.g. guidelines relating to citation of data and metadata; ethical and legal guidelines for sharing sensitive data);  
-  - training, i.e the acquisition of knowledge and/or skills needed to implement the practice;  
-  - norms, i.e. widespread attitudes and behaviours that support and/or encourage the practice (e.g. the perception that the field is aware of the practice and in favour of implementation; interest from early-career researchers; support from supervisors, mentors);  
-  - incentives, i.e. resources and/or mechanisms that reward the practice (e.g. dedicated funding, awards; institutional recognition);  
-  - policy, i.e. a requirement to implement the practice by relevant stakeholders (e.g. institutions, funders, publishers).  
+Different factors may contribute to the adoption of open research practices, including:
+
+- infrastructure, i.e. tools, resources, and/or services that enable implementation of the practice (e.g. repositories for digital or physical storage; registries for preregistration; publishing platforms or outlets) and of relevant community standards (e.g. guidelines relating to citation of data and metadata; ethical and legal guidelines for sharing sensitive data);  
+- training, i.e the acquisition of knowledge and/or skills needed to implement the practice;  
+- norms, i.e. widespread attitudes and behaviours that support and/or encourage the practice (e.g. the perception that the field is aware of the practice and in favour of implementation; interest from early-career researchers; support from supervisors, mentors);  
+- incentives, i.e. resources and/or mechanisms that reward the practice (e.g. dedicated funding, awards; institutional recognition);  
+- policy, i.e. a requirement to implement the practice by relevant stakeholders (e.g. institutions, funders, publishers).  
 
 Time may be perceived as an additional factor contributing to adoption of a practice. Rather, we consider availability of time, or lack thereof, as a consequence of the factors listed above. For example, a researcher may choose to invest the time required to adopt a practice depending on:  
-  - the availability of infrastructure or training, which facilitate implementation;  
-  - the existence of norms in the community, which mitigate the burden on the researcher;  
-  - the presence of incentives, or policy, which reward and/or mandate the practice in the researcher’s field or institution.   
+
+- the availability of infrastructure or training, which facilitate implementation;  
+- the existence of norms in the community, which mitigate the burden on the researcher;  
+- the presence of incentives, or policy, which reward and/or mandate the practice in the researcher’s field or institution.   
 
 A total of **`r sst$Total[sst$Question == "Barriers"]`** PGR students responded to the question:  
 "**Do you face any barriers in adopting the following practices and, if so, what are they?** Tick all that apply and/or provide a brief description for any others."
+
 ```{r, echo = FALSE}
 a <- cbind(" " = c("Number of respondents"), sst[5,2:7])
 rownames(a) <- NULL
@@ -206,7 +210,9 @@ While the lack of incentives to practice **Open Access** and lack of training to
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Barriers_plot
 ```
+
 #### Other barriers
+
 ```{r, echo = FALSE, include = FALSE}
 source('OtherBarriersDownsides.R')
 ```
@@ -216,9 +222,11 @@ rownames(pivot_table_OtherBarriers) <- NULL
 pivot_table_OtherBarriers %>% knitr::kable()
 ```
 
+
 ### Downsides to widespread adoption of  open research practices
 A total of **`r sst$Total[sst$Question == "Downsides"]`** PGR students responded to the question:  
 "**In your view, are there any downsides to widespread adoption of the following practices in your field of research?** If so, please provide a brief description."
+
 ```{r, echo = FALSE}
 a <- cbind(" " = c("Number of respondents"), sst[6,2:7])
 rownames(a) <- NULL
@@ -233,6 +241,7 @@ no_downsides_MSD <- round(summary(pgrdata_Downsides$perc[pgrdata_Downsides$Answe
 yes_downsides_data_MSD <- round(pgrdata_Downsides$perc[pgrdata_Downsides$Answer == 'Yes' & pgrdata_Downsides$Div == 'MSD' & pgrdata_Downsides$LabelIndiv == 'Open Data'],1)
 
 ```
+
 Overall, the vast majority of respondents (on average **`r no_downsides[4]`%**, ranging from **`r no_downsides[1]`%** to **`r no_downsides[6]`%**) found that the widespread adoption of open research practices would have no downsides, while very few found that it would (on average **`r yes_downsides[4]`%**, ranging from **`r yes_downsides[1]`%** to **`r yes_downsides[6]`%**). Lower levels of favorable opinions, like previously, did not correspond to a higher level of unfavorable opinions but to a large proportion of respondent who indicated they were unsure about whether a widespread adoption of open research practices would lead to any downsides. T
 
 ```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
@@ -244,7 +253,9 @@ In MSD, more than half (`r no_downsides_MSD[1]`% at minimum) of the respondents 
 ```{r, echo = FALSE, warning = FALSE, fig.width=10, fig.height=8, fig.align = "center"}
 pgrdata_Downsides_plot
 ```
+
 #### what downsides
+
 ```{r, echo = FALSE}
 rownames(pivot_table_WhatDownsides) <- NULL
 pivot_table_WhatDownsides %>% knitr::kable()
@@ -253,6 +264,7 @@ pivot_table_WhatDownsides %>% knitr::kable()
 ### Training needs
 A total of **`r sst$Total[sst$Question == "Training"]`** PGR students responded to the question:  
 "**For which of the following topics do you think more guidance is necessary?** ‘No guidance needed’ indicates that sufficient guidance on the topic is available. ‘No guidance wanted’ indicates that you do not see the net benefit of engaging with the topic. Please list any additional topics in the empty boxes below."
+
 ```{r, echo = FALSE}
 a <- cbind(" " = c("Number of respondents"), sst[9,2:7])
 rownames(a) <- NULL
@@ -260,16 +272,16 @@ a %>% knitr::kable()
 ```
 
 The topics listed were:  
-How to publish open access articles, theses, or monographs [labelled **Open Access**]  
-How to prepare data management plans [labelled **Data Management Plan**]  
-How to prepare data and metadata for archiving, and possibly for sharing in a public repository in line with community standards [labelled **Open data**]  
-How to prepare ethics applications that allow archiving of anonymised data in a public repository [lablled **Ethics**]  
-How to write good quality code (including unit testing, version control, reproducible documentation) and share it publicly (e.g. selection of a repository that assigns a DOI) [labelled **Open Code**]  
-How to prepare materials for sharing (e.g. in a digital repository that assigns a DOI, or in a physical repository)
-How to choose and apply licences for sharing resources (e.g. data, materials, and/or code) and navigate relevant legislation (including copyright law, privacy and GDPR law, commercial law, and institutional regulations) [labelled **Licences**]  
-How to prepare preregistrations and/or registered reports (including experimental design, statistics, data simulation) [labelled **Preregistration**]  
-Guidance on sharing preprints (e.g. selection of appropriate repository, consideration of publisher’s rights, ethical considerations) [labelled **Preprint**]  
-How to assess job applications responsibly, fairly, and transparently [labelled ]
+- How to publish open access articles, theses, or monographs [labelled **Open Access**]  
+- How to prepare data management plans [labelled **Data Management Plan**]  
+- How to prepare data and metadata for archiving, and possibly for sharing in a public repository in line with community standards [labelled **Open data**]  
+- How to prepare ethics applications that allow archiving of anonymised data in a public repository [lablled **Ethics**]  
+- How to write good quality code (including unit testing, version control, reproducible documentation) and share it publicly (e.g. selection of a repository that assigns a DOI) [labelled **Open Code**]  
+- How to prepare materials for sharing (e.g. in a digital repository that assigns a DOI, or in a physical repository)
+- How to choose and apply licences for sharing resources (e.g. data, materials, and/or code) and navigate relevant legislation (including copyright law, privacy and GDPR law, commercial law, and institutional regulations) [labelled **Licences**]  
+- How to prepare preregistrations and/or registered reports (including experimental design, statistics, data simulation) [labelled **Preregistration**]  
+- Guidance on sharing preprints (e.g. selection of appropriate repository, consideration of publisher’s rights, ethical considerations) [labelled **Preprint**]  
+- How to assess job applications responsibly, fairly, and transparently [labelled ]
 
 ```{r, echo = FALSE, include = FALSE}
 source("Training.R")
@@ -280,6 +292,7 @@ no_guidance_needed <- All_pgrdata_Training %>% group_by(LabelIndiv) %>% summaris
 
 
 ```
+
 Overall, most respondents indicated they wanted some form of guidance (written guidance and/or worshop-led training) for each of the topics presented (on average **`r summary_some_guidance_wanted[4]`%** of the respondents; ranging from `r summary_some_guidance_wanted[1]`% for Preregistration and Registered Reports to `r summary_some_guidance_wanted[6]`% for FAIR data. 
 
 ```{r, echo = FALSE, fig.width=10, fig.height=4, fig.align = "center"}
@@ -291,6 +304,7 @@ pgrdata_Training_plot
 ```
 
 #### extra training requested
+
 ```{r, echo = FALSE}
 xtab_OtherTraining %>% knitr::kable()
 ```
@@ -309,11 +323,13 @@ pgrdata_Support_plot
 ```
 
 #### extra support requested
+
 ```{r, echo = FALSE}
 xtab_OtherSupport %>% knitr::kable()
 ```
 
 ### Perceived current recruitment criteria
+
 ```{r, echo = FALSE}
 a <- cbind( " " = c("Number of respondents"), sst[7,2:7])
 rownames(a) <- NULL
@@ -333,12 +349,14 @@ pgrdata_CurrentCriteria_plot
 ```
 
 #### other perceived current recruitment criteria
+
 ```{r, echo = FALSE}
 xtab_OtherCurrentRecruitment %>% knitr::kable()
 ```
 
 
 ### Desired future recruitment criteria
+
 ```{r, echo = FALSE}
 a <- cbind( " " = c("Number of respondents"), sst[8,2:7])
 rownames(a) <- NULL
@@ -359,6 +377,7 @@ pgrdata_FutureCriteria_plot
 ```
 
 #### other desired future recruitment criteria
+
 ```{r, echo = FALSE}
 xtab_OtherFutureRecruitment %>% knitr::kable()
 ```
