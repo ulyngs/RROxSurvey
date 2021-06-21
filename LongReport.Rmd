@@ -2,7 +2,11 @@
 title: "Open research at Oxford survey"
 subtitle: "round 1: PGR (12 Jan - 1 Mar 2021)"
 author: "Malika Ihle, Reproducible Research Oxford Coordinator"
-output: html_document
+output: 
+  bookdown::word_document2:
+    reference_docx: "template-lyngs.docx"
+    number_sections: false
+  bookdown::html_document2: default
 ---
 
 <style>
